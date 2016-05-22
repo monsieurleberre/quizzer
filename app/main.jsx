@@ -3,6 +3,19 @@ var ReactDOM = require('react-dom');
 
 console.log("main.jsx is f**ing running");
 
-var Question = require("./components/Question.jsx");
+var fs = require("fs");
 
-ReactDOM.render(<Question />, document.getElementById('quizzer'));
+var questions;
+fs.readFile("questions.json", 
+    (err, data) => {
+        if(err){
+            console.log("failed to read file" + err.message + err.stack);
+            question = [];
+            return;
+        }
+        question = JSON.parse(data);
+    })
+
+var QuestionFrame = require("./components/QuestionFrame.jsx");
+
+ReactDOM.render(<QuestionFrame />, document.getElementById('quizzer'));

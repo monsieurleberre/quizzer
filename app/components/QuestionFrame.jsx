@@ -6,12 +6,12 @@ module.exports = (function () {
         render:function(){
             return (
                 <div className="QuestionFrame">
-                    <Question content={this.props.content} />
-                    <AnswerFrame />
+                    <Question question="{this.props.key} w" />
+                    <AnswerList />
                     <Explanation />
                 </div>
                 )
         }
     })
-    return Question;
+    return QuestionFrame;
 })();

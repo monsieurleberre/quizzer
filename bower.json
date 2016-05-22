@@ -1,0 +1,17 @@
+{
+  "name": "react-express-fiddling",
+  "description": "some example",
+  "main": "index.js",
+  "authors": [
+    "Matt"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ] 
+}

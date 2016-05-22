@@ -5,8 +5,8 @@ module.exports = function () {
     var React = require('react');
     var ReactDOM = require('react-dom');
 
-    var GroceryListify = React.createClass({
-        displayName: 'GroceryListify',
+    var Question = React.createClass({
+        displayName: 'Question',
 
         render: function render() {
             return React.createElement(

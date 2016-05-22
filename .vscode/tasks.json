@@ -5,7 +5,10 @@
     "command": "gulp",
     "tasks": [
         {
-            "taskName": "bundle"
+            "taskName": "bundle",
+            "isBuildCommand": true,
+            "showOutput": "always",
+            "isWatching": false
         }
     ],
     "isShellCommand": true,

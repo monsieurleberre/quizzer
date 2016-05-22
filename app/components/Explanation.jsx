@@ -2,14 +2,14 @@ module.exports = (function () {
     var React = require('react');
     var ReactDOM = require('react-dom');
 
-    var Answer = React.createClass({
+    var Explanation = React.createClass({
         render:function(){
             return (
-                <div className="answer">
-                    {this.props.key}{this.props.score}
+                <div className="explanation">
+                    {this.props.tip}
                 </div>
                 )
         }
     })
-    return Answer;
+    return Explanation;
 })();

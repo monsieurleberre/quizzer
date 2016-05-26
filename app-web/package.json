@@ -1,0 +1,30 @@
+{
+  "name": "quizzer",
+  "version": "0.0.1",
+  "description": "Create and play online quizzes",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monsieurleberre/quizzer-app-web.git"
+  },
+  "keywords": [
+    "react",
+    "firebase",
+    "webpack",
+    "quizz"
+  ],
+  "author": "Monsieur Le Berre",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/monsieurleberre/quizzer/issues"
+  },
+  "homepage": "https://github.com/monsieurleberre/quizzer#readme",
+  "dependencies": {
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "webpack": "^1.13.1"
+  }
+}

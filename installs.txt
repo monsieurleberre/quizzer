@@ -1,8 +1,3 @@
-npm install --save-dev babel babel-cli babel-preset-react es2015
-npm install --save react
-bower install --save react
-npm install --save-dev gulp-babel
-npm install -g browserify
-npm install -save reactify
-npm install --save vinyl-source-stream
-
+typings install dt~babel-core --global
+typings install dt~webpack --global
+npm install -g webpack

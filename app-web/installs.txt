@@ -1,3 +1,0 @@
-typings install dt~babel-core --global
-typings install dt~webpack --global
-npm install -g webpack

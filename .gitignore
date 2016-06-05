@@ -1,2 +1,4 @@
 node_modules
-.aws
+npm-debug.log
+.DS_Store
+questions.json

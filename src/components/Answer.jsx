@@ -1,20 +1,19 @@
 import React from 'react'
 
-class Answer extends React.Component {
-    constructor() {
-        super();
+export default class Answer extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-
+            answer: props.answer || "constructor answer",
+            score: props.score
         };
-        this.props = {
 
-        };
     }
 
     render() {
         return (
             <div className="answer">
-                {this.state.answer}{this.state.score}
+                {this.state.answer} ({this.state.score})
             </div>
         )
     }

@@ -1,21 +1,29 @@
-import React from 'react'
+import React from 'react';
     
-class Question extends React.Component {
-    constructor(){
-        super();
+export default class Question extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(`props are ${this.props}`);
         this.state = {
-            
-        },
-        this.props.question = "question1";
-        this.props.tip = "tip";
+            question : props.question || "question constructor",
+            tip : props.tip || "tip constructor"
+        };
+        
+        console.log(`tip is ${this.state.tip}`);
+        console.log(`question is ${this.state.question}`);
     }
     
     render() {
+        var shit = "chit";
+        console.log(`rendering ${this.question} ${shit}`);
         return (
-            <div className="question">
-                <h1>{this.props.question}</h1>
-                <h2>{this.props.tip}</h2>
+            <div classname="question">
+                <h1>question: {this.state.question}</h1>
+                <h2>tip: {this.state.tip}</h2>
             </div>
             )
     }
 }
+
+// <h1>question: {this.props.question}</h1>
+//                 <h2>tip: {this.props.tip}</h2>

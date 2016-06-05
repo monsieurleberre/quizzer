@@ -1,13 +1,10 @@
 import React from 'react'
 
-class Explanation extends React.Component {
-    constructor() {
-        super();
+export default class Explanation extends React.Component {
+    constructor(props) {
+        super(props);
         this.state = {
-
-        };
-        this.props = {
-
+            explanation : props.explanation    
         };
     }
 

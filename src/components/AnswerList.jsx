@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Answer from './Answer.jsx'
+import RadioButtonGroup from 'material-ui/RadioButton'
+import List from 'material-ui/List'
 
 export default class AnswerList extends React.Component {
     constructor(props) {
@@ -14,12 +16,20 @@ export default class AnswerList extends React.Component {
     }
 
     render() {
-        this.answerNodes = Object.keys(this.state.answers).map((a,i) => 
-            <Answer answer={a} key={i} score={this.state.answers[a].score}/>);
-        return (
-            <div className="answerList" answerType={this.state.answerType}>
-                {this.answerNodes}
-            </div>
-        )
+        this.answerNodes = Object.keys(this.props.answers).map((a,i) => 
+            <Answer answer={a} answerType={this.props.answerType} key={i} score={this.props.answers[a].score}/>);
+        if(this.props.answerType == "one") 
+            return (
+                <List className="answerList">
+                        {this.answerNodes}     
+                </List>
+            )
+        else
+            return (
+                <List className="answerList">
+                        {this.answerNodes}
+                    
+                </List>
+            )      
     }
 }

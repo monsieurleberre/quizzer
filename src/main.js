@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import ThemeWrapper from './components/ThemeWrapper.jsx'
 import QuestionFrame from './components/QuestionFrame.jsx';
-//import JsonQuestionReader from './JsonQuestionReader'
-
-//var questions = new JsonQuestionReader().refresh()
-import questions from './questions.json'
-console.log(`Matt has written ${Object.keys(questions).length} questions`)
+import mui from 'material-ui'
 
 var question = {
-    "question": "Which of these systems has Cassandra emerged from?",
+    "question": "Who do you really think you are ?",
     "answerType": "many",
-    "answers": {  "Amazon DynamoDB" : { "score" : 1 },  "Apache Hadoop" : { "score" : -1 },  "Cassandra itself; it's both a chicken and an egg! " : { "score" : 1 },  "Google big tables" : { "score" : 1 },  "Microsoft Azure DocumentDB" : { "score" : 1 }},
+    "answers": {  "The person that is reading this" : { "score" : 1 },  "Your parent's kid" : { "score" : 1 },  "A question answerer" : { "score" : 1 },  "That other guy too" : { "score" : 1 },  "A drunk programer" : { "score" : 1 }},
     "tags": [ "basic" ],
-    "explanation": null,
-    "tip": null
+    "explanation": "You're anything but that other guy",
+    "tip": "no tip for that question: sort yourself out"
 };
 
-ReactDOM.render(<QuestionFrame question="htmlquestion" tip="htmltip" question={question}/>, document.getElementById('quizzer'));
+ReactDOM.render(<ThemeWrapper question={question}/>, document.getElementById('quizzer'));

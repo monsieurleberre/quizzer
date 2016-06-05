@@ -1,4 +1,5 @@
 import React from 'react'
+import {CardText} from 'material-ui/Card';
 
 export default class Explanation extends React.Component {
     constructor(props) {
@@ -11,7 +12,9 @@ export default class Explanation extends React.Component {
     render() {
         return (
             <div className="explanation">
-                {this.state.explanation}
+                <CardText expandable={true}>
+                    {this.state.explanation}
+                </CardText>
             </div>
         )
     }

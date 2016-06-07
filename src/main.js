@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import ThemeWrapper from './components/ThemeWrapper.jsx'
+import ReactDOM from 'react-dom';
+import ThemeWrapper from './components/ThemeWrapper.jsx';
 import QuestionFrame from './components/QuestionFrame.jsx';
-import mui from 'material-ui'
+import mui from 'material-ui';
+//import FirebaseConfigs from './FirebaseConfigs';
+import firebase from 'firebase';
+
 
 var question = {
     "question": "Who do you really think you are ?",

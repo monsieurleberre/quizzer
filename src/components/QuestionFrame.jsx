@@ -23,7 +23,7 @@ export default class QuestionFrame extends React.Component {
                         avatar="http://lorempixel.com/100/100/people/"
                         />
                     <CardMedia style={{
-                        maxHeight:"200"
+                        maxHeight:"200px"
                     }}
                         overlay={<CardTitle title="Check this technical image" subtitle="it is suspiciously useless" />}
                         >

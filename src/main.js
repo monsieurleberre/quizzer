@@ -6,7 +6,6 @@ import mui from 'material-ui';
 //import FirebaseConfigs from './FirebaseConfigs';
 import firebase from 'firebase';
 
-
 var question = {
     "question": "Who do you really think you are ?",
     "answerType": "many",
@@ -14,6 +13,5 @@ var question = {
     "tags": [ "basic" ],
     "explanation": "You're anything but that other guy",
     "tip": "no tip for that question: sort yourself out"
-};
-
+}
 ReactDOM.render(<ThemeWrapper question={question}/>, document.getElementById('quizzer'));

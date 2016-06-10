@@ -10,19 +10,14 @@ const muiTheme = getMuiTheme({
 
 export default class ThemeWrapper extends React.Component {
     constructor(props){
-        
         super(props);
-        
-        //muiTheme = getMuiTheme()
-        
     }
 
-    
     render() {
         return (
             <div className="themeWrapper" width="400">
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <QuizzPlayer question={this.props.question} />
+                    <QuizzPlayer questions={this.props.questions} />
                 </MuiThemeProvider>
             </div>        
             )

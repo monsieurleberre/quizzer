@@ -9,7 +9,7 @@ export default class QuizzPlayer extends React.Component {
     render() {
         return (
             <div classname="QuizzPlayer" width="420">
-                <QuestionFrame question={this.props.question}/>
+                <QuestionFrame questions={this.props.questions}/>
             </div>
             )
     }

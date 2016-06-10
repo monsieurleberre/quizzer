@@ -7,17 +7,12 @@ import List from 'material-ui/List'
 export default class AnswerList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            //answers : { no : { score: 1}, fucking : { score: -1}, Answer : { score: 1}},
-            answers : props.answers,
-            answerType : props.answerType               
-        };
-        this.props = props;
     }
 
     render() {
+        console.log("answer keys are:" + Object.keys(this.props.answers));
         this.answerNodes = Object.keys(this.props.answers).map((a,i) => 
-            <Answer answer={a} answerType={this.props.answerType} key={i} score={this.props.answers[a].score}/>);
+            <Answer answer={this.props.answers[a].answer} answerType={this.props.answerType} key={i} score={this.props.answers[a].score}/>);
         if(this.props.answerType == "one") 
             return (
                 <List className="answerList">

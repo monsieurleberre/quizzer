@@ -19,18 +19,23 @@ class Actions{
             console.log(`email is ${email}`);
             let password = FirebaseConfigs.password;
 
-            Firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            // [START_EXCLUDE]
-            if (errorCode === 'auth/wrong-password') {
-                alert('Wrong password.');
-            } else {
-                console.error(error);
-            }
-            // [END_EXCLUDE]
-            });
+            Firebase.auth().signInWithEmailAndPassword(email, password)
+                .then(user => {
+                    console.log("dispatching user :)");
+                    dispatch(user)
+                })
+                .catch(function (error) {
+                    // Handle Errors here.
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    // [START_EXCLUDE]
+                    if (errorCode === 'auth/wrong-password') {
+                        alert('Wrong password.');
+                    } else {
+                        console.error(error);
+                    }
+                    // [END_EXCLUDE]
+                });
 
         }
     }

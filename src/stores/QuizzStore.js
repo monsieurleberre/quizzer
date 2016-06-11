@@ -5,12 +5,12 @@ import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 @createStore(alt)
 class QuizzStore{
     constructor(){
-        this.state = {authData: null};
+        this.state = {user: null};
     }
 
     @bind(Actions.login)
-    login(authData){
-        this.setState(s => s.authData = authData)
+    login(user){
+        this.setState(s => s.user = user)
     }
 }
 

@@ -11,8 +11,6 @@ class QuizzPlayer extends React.Component {
     }
     
     render() {
-        let loginView = <Login />
-        
         if(!this.props.user) return (<Login />);
 
         return (

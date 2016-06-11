@@ -1,3 +1,4 @@
+/// <reference path="globals/alt/index.d.ts" />
 /// <reference path="globals/babel-core/index.d.ts" />
 /// <reference path="globals/firebase/index.d.ts" />
 /// <reference path="globals/material-ui/index.d.ts" />

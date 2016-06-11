@@ -25,9 +25,11 @@
   },
   "homepage": "https://github.com/monsieurleberre/quizzer-app-web#readme",
   "devDependencies": {
+    "alt-utils": "^1.0.0",
     "babel-core": "^6.9.1",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -42,6 +44,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "alt": "^0.18.4",
     "firebase": "^3.0.3",
     "lodash": "^4.13.1",
     "material-ui": "^0.15.0",

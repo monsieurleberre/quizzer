@@ -1,5 +1,4 @@
 import React from 'react'
-import Question from './Question.jsx'
 import AnswerList from './AnswerList.jsx'
 import Explanation from './Explanation.jsx'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
@@ -43,7 +42,7 @@ export default class QuestionFrame extends React.Component {
                     <CardActions>
                          <FlatButton icon={<ChevronLeft />} onClick={() => {
                                 console.log("click left");
-                                var newIndex = Math.max(0, this.state.currentQuestionIndex-1);
+                                let newIndex = Math.max(0, this.state.currentQuestionIndex-1);
                                 console.log(newIndex);
                                 this.setState(previousState => {
                                     previousState.currentQuestion = this.props.questions[newIndex]
@@ -51,7 +50,7 @@ export default class QuestionFrame extends React.Component {
                              }} />
                          <FlatButton icon={<ChevronRight />} onClick={() => {
                                 console.log("click right");
-                                var newIndex = Math.min(1, this.state.currentQuestionIndex+1);
+                                let newIndex = Math.min(1, this.state.currentQuestionIndex+1);
                                 console.log(newIndex);
                                 this.setState(previousState => {
                                     previousState.currentQuestion = this.props.questions[newIndex]

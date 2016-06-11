@@ -14,8 +14,6 @@ export default class Question extends React.Component {
     }
     
     render() {
-        var shit = "chit";
-        console.log(`rendering ${this.question} ${shit}`);
         return (
             <div classname="question">
                 To be or not to be

@@ -1,7 +1,7 @@
 import alt from '../alt'
 import Firebase from 'firebase'
-import FirebaseRefs from '../data/FirebaseRefs'
-import FirebaseConfigs from '../data/FirebaseConfigs'
+import FirebaseRefs from '../sources/FirebaseRefs'
+import FirebaseConfigs from '../sources/FirebaseConfigs'
 
 class Actions{
     login(args){
@@ -21,7 +21,7 @@ class Actions{
 
             Firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(user => {
-                    console.log("dispatching user :)");
+                    console.log('dispatching user :)');
                     dispatch(user)
                 })
                 .catch(function (error) {

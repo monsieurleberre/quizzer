@@ -26,8 +26,8 @@ module.exports = {
     },
     {
       test: /\.css$/,
-      include: path.join(__dirname, 'src'),
-      loader: 'css'
+      include: [path.join(__dirname, 'src'), /flexboxgrid/],
+      loader: 'style!css?modules'
     }]
   }
 };

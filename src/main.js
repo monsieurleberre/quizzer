@@ -63,4 +63,4 @@ console.log("pushing new questions")
 // var dbref = db.ref("cassandraQuizzData");
 // dbref.set(questions, (err, data) => console.log(err||data||"Cassandra Data pushed!"))
 
-ReactDOM.render(<ThemeWrapper questions={testData.questions}/>, document.getElementById('quizzer'));
+ReactDOM.render(<ThemeWrapper />, document.getElementById('quizzer'));

@@ -4,6 +4,22 @@ import FirebaseRefs from '../sources/FirebaseRefs'
 import FirebaseConfigs from '../sources/FirebaseConfigs'
 
 class Actions{
+
+    constructor(){
+        //method coming from alt.createActions call
+        console.log('Actions constructor')
+        console.log(this)
+        this.generateActions(
+            'loadingQuestionList',
+            'setQuestionList',
+            'setQuestionListFailed',
+            'navigateLeft',
+            'navigateRight',
+            'newQuestion'
+        )
+        console.log(this);
+    }
+    
     login(args){
         return (dispatch) => {
 

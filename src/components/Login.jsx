@@ -10,7 +10,7 @@ class Login extends React.Component {
     }
 
     onClick() {
-        console.log("logging in");
+        console.log('logging in');
         let authData = {}
         Actions.login();
     }

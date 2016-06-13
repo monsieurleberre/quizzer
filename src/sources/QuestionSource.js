@@ -10,10 +10,14 @@ let QuestionSource = {
             return new Promise((resolve, reject) => {
                 FirebaseRefs.questionsRef().once('value', snapshot => {
                     let questions = snapshot.val();
-                    console.log('QuestionSource received questions')
-                })
-                resolve(questions);
-            })
-        }
+                    console.log('QuestionSource received questions');
+                    resolve(questions);
+                });
+            });
+        },
+        loading: Actions.loadingQuestionList,
+        sucess: Actions.setQuestionList,
+        error: Actions.setQuestionListFailed
     }
 }
+export default QuestionSource

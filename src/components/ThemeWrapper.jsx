@@ -17,7 +17,7 @@ export default class ThemeWrapper extends React.Component {
         return (
             <div className="themeWrapper" width="400">
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <QuizzPlayer questions={this.props.questions} />
+                    <QuizzPlayer />
                 </MuiThemeProvider>
             </div>        
             )

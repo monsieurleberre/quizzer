@@ -9,21 +9,24 @@ import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import ChevronRight from 'react-material-icons/icons/navigation/chevron-right';
 import ChevronLeft from 'react-material-icons/icons/navigation/chevron-left';
+import Actions from '../actions'
 
 @connectToStores
 class QuizzPlayer extends React.Component {
     constructor(props) {
         super(props);
         console.log('creating QuizzPlayer')
-        console.log(props)
-        // console.log(QuizzStore.getInstance())
-        // var questions = QuizzStore.getInstance().getQuestions();
-        // log.console(questions)
     }
 
-    componentDidMount(){
-        //this.state.selectedChannel = this.props.params.channel;
-        QuizzStore.getQuestions();
+    componentDidMount() {
+        console.log('QuizzPlayer did mount');
+        if(this.props.user){
+            console.log('loading started')
+            Actions.fetchQuestionList().defer();
+            console.log('defered fetching questions')
+            console.log(this.props)
+        }
+            //Actions.fetchQuestionList()
     }
 
     static getStores() {
@@ -33,37 +36,21 @@ class QuizzPlayer extends React.Component {
 
     static getPropsFromStores() {
         console.log('QuizzerPlayer getting props from store Quizzer')
-        console.log(QuizzStore)
         return QuizzStore.getState();
     }
 
-    // @bind(Actions.questionListReceived)
-    // handleQuestionsReceived(){
-    //     console.log('getting question list')
-    //     let questions = QuizzStore.getQuestions;
-    //     console.log('received questions from QuizzStore');
-    //     console.log(QuizzStore);
-    //     this.setState({
-    //         questions: questions,
-    //         questionsCount: Object.keys(questions).length,
-    //         maxIndex: Object.keys(questions).maxIndex,
-    //         currentQuestionIndex: 0,
-    //         currentQuestion: questions[0],
-    //     });
-    // }
-
-
     render() {
+
         if (!this.props.user) return (<Login />);
-        if (!this.props.questions) 
-        {
-            return (<CircularProgress mode="indeterminate" />);
+        if (!this.props.questions && !this.props.isLoadingQuestionList) {
+            
+            return (<CircularProgress mode="indeterminate" on/>);
         }
         return (
             <div classname="QuizzPlayer" width="420">
                 <Grid>
                     <Row>
-                        <Col xs={1} middle="xs"><FlatButton icon={<ChevronLeft />} onClick={() => {}} /></Col>
+                        <Col xs={1} middle="xs"><FlatButton icon={<ChevronLeft />} onClick={() => { } } /></Col>
                         <Col center="xs" middle="xs">
                             <QuestionFrame question={this.props.currentQuestion}
                                 questionIndex={this.props.currentQuestionIndex}
@@ -71,7 +58,7 @@ class QuizzPlayer extends React.Component {
                         </Col>
 
                         <Col xs={1} middle="xs">
-                            <FlatButton icon={<ChevronRight />} onClick={() => {} } /></Col>
+                            <FlatButton icon={<ChevronRight />} onClick={() => { } } /></Col>
                     </Row>
 
                 </Grid>

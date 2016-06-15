@@ -5,39 +5,54 @@ import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 
 @datasource(QuestionSource)
 @createStore(alt)
-class QuizzStore{
-    constructor(){
+class QuizzStore {
+    constructor() {
         this.state = {
             user: null,
             questions: null,
             currentQuestionIndex: 0
         };
         console.log(this)
-           
+
         this.registerAsync(QuestionSource);
+        //this.getQuestions();
     }
 
     @bind(Actions.login)
-    handleLogin(user){
+    handleLogin(user) {
         console.log('loggin in')
-        console.log(this.getInstance())
-        this.setState(s => s.user = user)
+        this.setState(s => s.user = user);
+        setTimeout(() => Actions.fetchQuestionList(), 0);
+    }
+
+    @bind(Actions.fetchQuestionList)
+    handleFetchQuestionList() {
+        console.log('handling fetch question list')
+        setTimeout(() => this.getInstance().getQuestions(), 0);
+        //this.preventDefault();
+    }
+
+    @bind(Actions.loadingQuestionList)
+    handleLoadingQuestionList() {
+        console.log('handling loadingQuestionList');
+        this.setState(s => s.loadingQuestionList = true);
     }
 
     @bind(Actions.setQuestionList)
-    handleSetQuestionList(questions){
+    handleSetQuestionList(questions) {
         console.log('handling questionlist set');
-        this.setState({
-            questions,
-            currentQuestion: questions[currentQuestionIndex],
-            messagesDirty: true
+        this.setState(s => {
+            s.questions = questions;
+            s.currentQuestion = questions[currentQuestionIndex];
+            s.loadingQuestionList = false;
         });
+        //this.preventDefault();
     }
 
     @bind(Actions.navigateLeft)
-    handleNavigateLeft(currentIndex = 0, minIndex = 0){
+    handleNavigateLeft(currentIndex = 0, minIndex = 0) {
         console.log('handling navigate left');
-        if(currentIndex <= minIndex) return;
+        if (currentIndex <= minIndex) return;
         let newIndex = currentIndex - 1;
         console.log(`new index : ${newIndex}`);
         this.setState(previousState => {
@@ -47,9 +62,9 @@ class QuizzStore{
     }
 
     @bind(Actions.navigateRight)
-    handleNavigateRight(currentIndex = 0, minIndex = 0){
+    handleNavigateRight(currentIndex = 0, minIndex = 0) {
         console.log('handling navigate right');
-        if(currentIndex >= minIndex) return;
+        if (currentIndex >= minIndex) return;
         let newIndex = currentIndex + 1;
         console.log(`new index : ${newIndex}`);
         this.setState(previousState => {

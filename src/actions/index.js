@@ -10,6 +10,7 @@ class Actions{
         console.log('Actions constructor')
         console.log(this)
         this.generateActions(
+            'fetchQuestionList',
             'loadingQuestionList',
             'setQuestionList',
             'setQuestionListFailed',
@@ -23,14 +24,6 @@ class Actions{
     login(args){
         return (dispatch) => {
 
-            // firebaseRef.authWithOAuthPopup("google", (error, authData) => {
-            //     if (error) {
-            //         console.log("Authentication Failed!", error);
-            //     } else {
-            //         console.log("Authenticated successfully with payload:", authData);
-            //         dispatch(authData);
-            //     }
-            // });
             let email = FirebaseConfigs.email;
             console.log(`email is ${email}`);
             let password = FirebaseConfigs.password;

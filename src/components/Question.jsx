@@ -5,8 +5,8 @@ export default class Question extends React.Component {
         super(props);
         console.log(`props are ${this.props}`);
         this.state = {
-            question : props.question || "question constructor",
-            tip : props.tip || "tip constructor"
+            question : props.question || 'question constructor',
+            tip : props.tip || 'tip constructor'
         };
         
         console.log(`tip is ${this.state.tip}`);

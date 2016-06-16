@@ -7,14 +7,24 @@ import Actions from '../actions'
 class Login extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            email: null,
+            password: null,
+        }
     }
 
     onClick() {
         console.log('login clicked');
-        let authData = {}
-        Actions.login();
+        Actions.login(this.state.email, this.state.password);
     }
 
+    passwordChanged(password) {
+        this.setState(s => { s.password = password; return s; })
+    }
+
+    emailChanged(email) {
+        this.setState(s => { s.email = email; return s; })
+    }
 
     render() {
         return (
@@ -27,11 +37,13 @@ class Login extends React.Component {
                         <TextField
                             hintText="somewhere@abovetherainbow.com"
                             floatingLabelText="eMail"
-                            type="text"/><br />
+                            type="text"
+                            onChange={this.emailChanged}/><br />
                         <TextField
                             hintText="go on, type it in"
                             floatingLabelText="Password"
-                            type="password"/><br />
+                            type="password"
+                            onChange={this.passwordChanged}/><br />
                     </CardText>
                     <CardText style={{ alignContent: 'right' }}>
                         <FlatButton

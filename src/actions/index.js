@@ -21,12 +21,12 @@ class Actions{
         console.log(this);
     }
     
-    login(args){
+    login(email, password){
         return (dispatch) => {
 
-            let email = FirebaseConfigs.email;
+            email = email || FirebaseConfigs.email;
             console.log(`email is ${email}`);
-            let password = FirebaseConfigs.password;
+            password = password || FirebaseConfigs.password;
 
             Firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(user => {

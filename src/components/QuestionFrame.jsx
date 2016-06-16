@@ -10,21 +10,16 @@ import ChevronLeft from 'react-material-icons/icons/navigation/chevron-left';
 export default class QuestionFrame extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            questionsCount: props.questionsCount,
-            questionIndex: props.questionIndex,
-            question: props.question,
-        }
     }
 
     render() {
         return (
             <div className="questionFrame">
                 <Card>
-                    <CardTitle title={this.state.question.question} subtitle={this.state.question.tip} />
+                    <CardTitle title={this.props.question.question} subtitle={this.props.question.tip} />
                     <CardHeader
                         title="This is the big daddy exams"
-                        subtitle={`question ${this.state.questionIndex + 1 }/${this.state.questionsCount}`} 
+                        subtitle={`question ${this.props.questionIndex + 1 }/${this.props.questionsCount}`} 
                         avatar="http://lorempixel.com/100/100/people/"
                         />
                     <CardMedia style={{
@@ -35,7 +30,7 @@ export default class QuestionFrame extends React.Component {
                         <img src="http://lorempixel.com/400/200/technics/" />
                     </CardMedia>
                     <CardText>
-                        <AnswerList answers={this.state.question.answers} answerType={this.state.question.answerType}/>
+                        <AnswerList answers={this.props.question.answers} answerType={this.props.question.answerType}/>
                     </CardText>
 
                 </Card>

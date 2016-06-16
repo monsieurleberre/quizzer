@@ -50,16 +50,16 @@ class QuizzPlayer extends React.Component {
         return (
             <div classname="QuizzPlayer" width="420">
                 <Grid>
-                    <Row>
-                        <Col xs={1} middle="xs"><FlatButton icon={<ChevronLeft />} onClick={() => { } } /></Col>
-                        <Col center="xs" middle="xs">
+                    <Row middle="xs">
+                        <Col xs={1}><FlatButton icon={<ChevronLeft />} onClick={Actions.navigateLeft} /></Col>
+                        <Col>
                             <QuestionFrame question={this.props.currentQuestion}
                                 questionIndex={this.props.currentQuestionIndex}
-                                questionsCount={this.props.questionsCount} />
+                                questionsCount={this.props.questions.length} />
                         </Col>
 
-                        <Col xs={1} middle="xs">
-                            <FlatButton icon={<ChevronRight />} onClick={() => { } } /></Col>
+                        <Col xs={1}>
+                            <FlatButton icon={<ChevronRight />} onClick={Actions.navigateRight} /></Col>
                     </Row>
 
                 </Grid>

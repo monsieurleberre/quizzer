@@ -32,11 +32,12 @@ class Login extends React.Component {
                             hintText="go on, type it in"
                             floatingLabelText="Password"
                             type="password"/><br />
-                        <FlatButton 
+                    </CardText>
+                    <CardText style={{ alignContent: 'right' }}>
+                        <FlatButton
+                            primary={true}
                             onClick={this.onClick}
-                            label="login">
-
-                        </FlatButton>
+                            label="login" />
                     </CardText>
                 </Card>
             </div>

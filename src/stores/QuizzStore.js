@@ -11,6 +11,7 @@ class QuizzStore {
             user: null,
             questions: null,
             currentQuestionIndex: 0,
+            maxIndex: 0,
             loadingQuestionList: false
         };
         console.log(this)
@@ -54,34 +55,34 @@ class QuizzStore {
             console.log(questions)
             s.questions = questions;
             s.currentQuestion = questions[s.currentQuestionIndex];
+            s.maxIndex = questions.length - 1;
             s.loadingQuestionList = false;
             console.log(s);
             return s;
         });
-        //this.preventDefault();
     }
 
     @bind(Actions.navigateLeft)
-    handleNavigateLeft(currentIndex = 0, minIndex = 0) {
+    handleNavigateLeft() {
         console.log('handling navigate left');
-        if (currentIndex <= minIndex) return;
-        let newIndex = currentIndex - 1;
-        console.log(`new index : ${newIndex}`);
-        this.setState(previousState => {
-            previousState.currentQuestion = this.props.questions[newIndex]
-            previousState.currentQuestionIndex = newIndex
+        if (this.state.currentQuestionIndex <= 0) return;
+        let newIndex = this.state.currentQuestionIndex - 1;
+        this.setState(s => {
+            s.currentQuestion = s.questions[newIndex];
+            s.currentQuestionIndex = newIndex;
+            return s
         });
     }
 
     @bind(Actions.navigateRight)
-    handleNavigateRight(currentIndex = 0, minIndex = 0) {
+    handleNavigateRight() {
         console.log('handling navigate right');
-        if (currentIndex >= minIndex) return;
-        let newIndex = currentIndex + 1;
-        console.log(`new index : ${newIndex}`);
-        this.setState(previousState => {
-            previousState.currentQuestion = this.props.questions[newIndex]
-            previousState.currentQuestionIndex = newIndex
+        if (this.state.currentQuestionIndex >= this.state.maxIndex) return;
+        let newIndex = this.state.currentQuestionIndex + 1;
+        this.setState(s => {
+            s.currentQuestion = s.questions[newIndex];
+            s.currentQuestionIndex = newIndex;
+            return s;
         });
     }
 

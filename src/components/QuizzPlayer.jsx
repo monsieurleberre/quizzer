@@ -43,9 +43,10 @@ class QuizzPlayer extends React.Component {
 
         if (!this.props.user) return (<Login />);
         if (!this.props.questions && !this.props.isLoadingQuestionList) {
-            
             return (<CircularProgress mode="indeterminate" on/>);
         }
+        console.log('progress finished')
+        console.log(this.props)
         return (
             <div classname="QuizzPlayer" width="420">
                 <Grid>

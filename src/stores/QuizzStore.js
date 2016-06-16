@@ -10,7 +10,8 @@ class QuizzStore {
         this.state = {
             user: null,
             questions: null,
-            currentQuestionIndex: 0
+            currentQuestionIndex: 0,
+            loadingQuestionList: false
         };
         console.log(this)
 
@@ -21,7 +22,12 @@ class QuizzStore {
     @bind(Actions.login)
     handleLogin(user) {
         console.log('loggin in')
-        this.setState(s => s.user = user);
+        this.setState(s => {
+            console.log('next state');
+            console.log(s);
+            s.user = user;
+            return s;
+        });
         setTimeout(() => Actions.fetchQuestionList(), 0);
     }
 
@@ -35,16 +41,22 @@ class QuizzStore {
     @bind(Actions.loadingQuestionList)
     handleLoadingQuestionList() {
         console.log('handling loadingQuestionList');
-        this.setState(s => s.loadingQuestionList = true);
+        this.setState(s => {
+            s.loadingQuestionList = true;
+            return s;
+        });
     }
 
     @bind(Actions.setQuestionList)
     handleSetQuestionList(questions) {
         console.log('handling questionlist set');
         this.setState(s => {
+            console.log(questions)
             s.questions = questions;
-            s.currentQuestion = questions[currentQuestionIndex];
+            s.currentQuestion = questions[s.currentQuestionIndex];
             s.loadingQuestionList = false;
+            console.log(s);
+            return s;
         });
         //this.preventDefault();
     }

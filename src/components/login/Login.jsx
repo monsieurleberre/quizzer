@@ -2,33 +2,35 @@ import React from 'react'
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import Actions from '../actions'
+import Actions from '../../actions'
+import LoginFailed from './LoginFailed.jsx'
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: null,
-            password: null,
+            email: '',
+            password: '',
         }
     }
 
-    onClick() {
+    onClick = () => {
         console.log('login clicked');
         Actions.login(this.state.email, this.state.password);
     }
 
-    passwordChanged(password) {
-        this.setState(s => { s.password = password; return s; })
+    passwordChanged = (password) => {
+        this.setState({ password: event.target.value });
     }
 
-    emailChanged(email) {
-        this.setState(s => { s.email = email; return s; })
+    emailChanged = (event) => {
+        this.setState({ email: event.target.value });
     }
 
     render() {
         return (
             <div className="login">
+                <LoginFailed hidden={!this.props.err} />
                 <Card>
                     <CardTitle
                         title="Hello there"
@@ -38,6 +40,7 @@ class Login extends React.Component {
                             hintText="somewhere@abovetherainbow.com"
                             floatingLabelText="eMail"
                             type="text"
+                            value={this.state.email}
                             onChange={this.emailChanged}/><br />
                         <TextField
                             hintText="go on, type it in"

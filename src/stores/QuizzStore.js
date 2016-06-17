@@ -3,7 +3,7 @@ import Actions from '../actions';
 import QuestionSource from '../sources/QuestionSource'
 import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 
-@datasource(QuestionSource)
+//@datasource(QuestionSource)
 @createStore(alt)
 class QuizzStore {
     constructor() {
@@ -17,26 +17,25 @@ class QuizzStore {
         console.log(this)
 
         this.registerAsync(QuestionSource);
-        //this.getQuestions();
     }
 
     @bind(Actions.login)
-    handleLogin(user) {
+    handleLogin(authData) {
         console.log('loggin in')
         this.setState(s => {
             console.log('next state');
             console.log(s);
-            s.user = user;
+            s.authData = authData;
             return s;
         });
-        setTimeout(() => Actions.fetchQuestionList(), 0);
+        if(!authData.err)
+            setTimeout(() => Actions.fetchQuestionList(), 0);
     }
 
     @bind(Actions.fetchQuestionList)
     handleFetchQuestionList() {
         console.log('handling fetch question list')
         setTimeout(() => this.getInstance().getQuestions(), 0);
-        //this.preventDefault();
     }
 
     @bind(Actions.loadingQuestionList)

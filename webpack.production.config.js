@@ -1,5 +1,3 @@
-'use strict';
-
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -43,9 +41,16 @@ module.exports = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        "presets": ["es2015", "stage-0", "react"]
+        'presets': ['es2015', 'stage-0', 'react'],
+        'plugins': ['transform-decorators-legacy']
+
       }
-    }, 
+    },
+    {
+      test: /\.css$/,
+      include: [path.join(__dirname, 'src'), /flexboxgrid/],
+      loader: 'style!css?modules'
+    } 
     // {
     //   test: /\.json?$/,
     //   loader: 'json'

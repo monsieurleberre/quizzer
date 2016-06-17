@@ -2,7 +2,7 @@ import React from 'react';
 import QuestionFrame from './QuestionFrame.jsx'
 import connectToStores from 'alt-utils/lib/connectToStores';
 import QuizzStore from '../stores/QuizzStore';
-import Login from './Login.jsx'
+import Login from './login/Login.jsx'
 import Paper from 'material-ui/Paper';
 import { Grid, Row, Col } from 'react-flexbox-grid/lib/index';
 import FlatButton from 'material-ui/FlatButton';
@@ -20,13 +20,13 @@ class QuizzPlayer extends React.Component {
 
     componentDidMount() {
         console.log('QuizzPlayer did mount');
-        if(this.props.user){
-            console.log('loading started')
-            Actions.fetchQuestionList().defer();
-            console.log('defered fetching questions')
-            console.log(this.props)
-        }
-            //Actions.fetchQuestionList()
+        // if(this.props.user){
+        //     console.log('loading started')
+        //     Actions.fetchQuestionList().defer();
+        //     console.log('defered fetching questions')
+        //     console.log(this.props)
+        // }
+        //     //Actions.fetchQuestionList()
     }
 
     static getStores() {
@@ -41,7 +41,7 @@ class QuizzPlayer extends React.Component {
 
     render() {
 
-        if (!this.props.user) return (<Login />);
+        if (!this.props.authData || !this.props.authData.user) return (<Login data={this.props.authData}/>);
         if (!this.props.questions && !this.props.isLoadingQuestionList) {
             return (<CircularProgress mode="indeterminate" on/>);
         }

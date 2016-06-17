@@ -31,19 +31,12 @@ class Actions{
             Firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(user => {
                     console.log('dispatching user :)');
-                    dispatch(user)
+                    dispatch({user: user, err: null})
                 })
-                .catch(function (error) {
-                    // Handle Errors here.
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    // [START_EXCLUDE]
-                    if (errorCode === 'auth/wrong-password') {
-                        alert('Wrong password.');
-                    } else {
-                        console.error(error);
-                    }
-                    // [END_EXCLUDE]
+                .catch(error => {
+                    let message = 'User / Password not recognized'
+                    alert(message);
+                    dispatch({user: null, err: message})
                 });
 
         }

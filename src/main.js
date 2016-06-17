@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeWrapper from './components/ThemeWrapper.jsx';
 import FirebaseConfigs from './sources/FirebaseConfigs';
+import FirebaseRefs from './sources/FirebaseRefs'
 import Firebase from 'firebase';
 
 let testData = {
@@ -58,13 +59,14 @@ let testData = {
         }
 }
 
-// console.log("pushing new questions")
-//dbref.set(testData, (err, data) => console.log(err||data||"Data pushed!"))
-
-// var dbref = db.ref("cassandraQuizzData");
-// dbref.set(questions, (err, data) => console.log(err||data||"Cassandra Data pushed!"))
-
 console.log('Initializing Firebase')
 Firebase.initializeApp(FirebaseConfigs.quizzerDefaults);
+
+
+//dbref.set(questions, (err, data) => console.log(err||data||"Cassandra Data pushed!"))
+//FirebaseRefs.testDataRef().set(testData, (err, data) => console.log(err||data||'Data pushed!'))
+
+
+
 
 ReactDOM.render(<ThemeWrapper />, document.getElementById('quizzer'));

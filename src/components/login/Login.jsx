@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import Actions from '../../actions'
 import LoginFailed from './LoginFailed.jsx'
 
+@connectToStores
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -14,9 +15,15 @@ class Login extends React.Component {
         }
     }
 
-    // static contextType = {
-    //     router: React.PropTypes.func.isRequired
-    // }
+    static getStores() {
+        console.log('Login trying to get stores');
+        return [QuizzStore];
+    }
+
+    static getPropsFromStores() {
+        console.log('Login getting props from store Quizzer')
+        return QuizzStore.getState();
+    }
 
     onClick = () => {
         console.log('login clicked');

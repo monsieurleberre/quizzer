@@ -21,7 +21,7 @@ class Actions{
         console.log(this);
     }
     
-    login(email, password){
+    login(router, email, password){
         return (dispatch) => {
 
             email = email || FirebaseConfigs.email;
@@ -32,10 +32,13 @@ class Actions{
                 .then(user => {
                     console.log('dispatching user :)');
                     dispatch({user: user, err: null})
+                    console.log('transition to player')
+
+                    router.transitionTo('/player')
                 })
                 .catch(error => {
                     let message = 'User / Password not recognized'
-                    alert(message);
+                    console.log(message);
                     dispatch({user: null, err: message})
                 });
 

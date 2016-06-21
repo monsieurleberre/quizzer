@@ -20,13 +20,6 @@ class QuizzPlayer extends React.Component {
 
     componentDidMount() {
         console.log('QuizzPlayer did mount');
-        // if(this.props.user){
-        //     console.log('loading started')
-        //     Actions.fetchQuestionList().defer();
-        //     console.log('defered fetching questions')
-        //     console.log(this.props)
-        // }
-        //     //Actions.fetchQuestionList()
     }
 
     static getStores() {

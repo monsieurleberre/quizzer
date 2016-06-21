@@ -14,9 +14,14 @@ class Login extends React.Component {
         }
     }
 
+    // static contextType = {
+    //     router: React.PropTypes.func.isRequired
+    // }
+
     onClick = () => {
         console.log('login clicked');
-        Actions.login(this.state.email, this.state.password);
+        console.log(this.context.router)
+        Actions.login(this.context.router, this.state.email, this.state.password);
     }
 
     passwordChanged = (password) => {
@@ -28,6 +33,8 @@ class Login extends React.Component {
     }
 
     render() {
+        console.log('rendering login, props.err:');
+        console.log(this.props.err)
         return (
             <div className="login">
                 <LoginFailed hidden={!this.props.err} />
@@ -61,4 +68,4 @@ class Login extends React.Component {
 
 }
 
-export default Login;
+export default withRouter(new Login());

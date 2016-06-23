@@ -25,6 +25,7 @@ class QuizzStore {
         this.setState(s => {
             console.log('next state');
             console.log(s);
+            console.log(authData);
             s.authData = authData;
             return s;
         });

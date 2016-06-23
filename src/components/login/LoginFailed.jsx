@@ -9,10 +9,14 @@ import RaisedButton from 'material-ui/RaisedButton';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-export default class DialogExampleSimple extends React.Component {
-  state = {
-    open: false,
-  };
+export default class LoginFailed extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
 
   handleOpen = () => {
     this.setState({open: true});

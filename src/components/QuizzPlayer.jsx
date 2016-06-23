@@ -34,7 +34,7 @@ class QuizzPlayer extends React.Component {
 
     render() {
 
-        if (!this.props.authData || !this.props.authData.user) return (<Login data={this.props.authData}/>);
+        //if (!this.props.authData || !this.props.authData.user) return (<Login data={this.props.authData}/>);
         if (!this.props.questions && !this.props.isLoadingQuestionList) {
             return (<CircularProgress mode="indeterminate" on/>);
         }

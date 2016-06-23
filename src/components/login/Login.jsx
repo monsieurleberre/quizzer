@@ -4,6 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Actions from '../../actions'
 import LoginFailed from './LoginFailed.jsx'
+import QuizzStore from '../../stores/QuizzStore'
+import connectToStores from 'alt-utils/lib/connectToStores';
+import {withRouter} from 'react-router'
 
 @connectToStores
 class Login extends React.Component {
@@ -27,8 +30,8 @@ class Login extends React.Component {
 
     onClick = () => {
         console.log('login clicked');
-        console.log(this.context.router)
-        Actions.login(this.context.router, this.state.email, this.state.password);
+        console.log(this.props.router)
+        Actions.login(this.props.router, this.state.email, this.state.password);
     }
 
     passwordChanged = (password) => {
@@ -40,11 +43,14 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log('rendering login, props.err:');
-        console.log(this.props.err)
+        console.log('rendering login, props.authdata:');
+        if(this.props.authData){
+            console.log(this.props.authData.err)
+            console.log(this.props.authData.user)
+        }
         return (
             <div className="login">
-                <LoginFailed hidden={!this.props.err} />
+                <LoginFailed hidden={this.props.authData && !this.props.authData.err} />
                 <Card>
                     <CardTitle
                         title="Hello there"
@@ -60,6 +66,7 @@ class Login extends React.Component {
                             hintText="go on, type it in"
                             floatingLabelText="Password"
                             type="password"
+                            value={this.state.password}
                             onChange={this.passwordChanged}/><br />
                     </CardText>
                     <CardText style={{ alignContent: 'right' }}>
@@ -75,4 +82,14 @@ class Login extends React.Component {
 
 }
 
-export default withRouter(new Login());
+let routedLogin = withRouter(Login);
+console.debug('routed login is...')
+console.debug(routedLogin)
+console.debug(routedLogin.context)
+export default routedLogin;
+
+Login.propTypes = {
+  router: React.PropTypes.shape({
+    push: React.PropTypes.func.isRequired
+  }).isRequired
+};

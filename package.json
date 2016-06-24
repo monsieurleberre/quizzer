@@ -33,6 +33,7 @@
         "<rootDir>/node_modules/react-addons-test-utils",
         "<rootDir>/node_modules/fbjs",
         "<rootDir>/node_modules/alt",
+        "<rootDir>/src/alt",
         "<rootDir>/node_modules/alt-utils",
         "<rootDir>/node_modules/react-router",
         "<rootDir>/node_modules/flexboxgrid",

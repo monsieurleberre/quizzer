@@ -1,5 +1,5 @@
-jest.unmock('../../src/components/Login.jsx')
-import Login from '../../src/components/Login.jsx'
+jest.unmock('../../src/components/login/Login.jsx')
+import Login from '../../src/components/login/Login.jsx'
 
 import React from 'react';
 import ReactDOM from 'react-dom';

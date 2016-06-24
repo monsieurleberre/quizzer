@@ -8,8 +8,11 @@ import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 class QuizzStore {
     constructor() {
         this.state = {
-            user: null,
-            questions: null,
+            authData : {
+                user: null,
+                err: null,
+            },
+            questions: [],
             currentQuestionIndex: 0,
             maxIndex: 0,
             loadingQuestionList: false
@@ -21,22 +24,27 @@ class QuizzStore {
 
     @bind(Actions.login)
     handleLogin(authData) {
-        console.log('loggin in')
+        console.log('handling Login')
         this.setState(s => {
-            console.log('next state');
-            console.log(s);
+            console.log('received authData: ')
             console.log(authData);
             s.authData = authData;
             return s;
         });
-        if(!authData.err)
-            setTimeout(() => Actions.fetchQuestionList(), 0);
+        // if(!authData.err)
+        //     setTimeout(() => Actions.fetchQuestionList(), 0);
     }
 
     @bind(Actions.fetchQuestionList)
     handleFetchQuestionList() {
         console.log('handling fetch question list')
-        setTimeout(() => this.getInstance().getQuestions(), 0);
+        if(this.state.authData && this.state.authData.user && !this.state.loadingQuestionList)
+        {
+            this.setState({loadingQuestionList: true});
+            console.log('someone asked to load the questions')
+            console.log(this)
+            setTimeout(() => this.getInstance().getQuestions(), 0);
+        }
     }
 
     @bind(Actions.loadingQuestionList)
@@ -57,6 +65,7 @@ class QuizzStore {
             s.currentQuestion = questions[s.currentQuestionIndex];
             s.maxIndex = questions.length - 1;
             s.loadingQuestionList = false;
+            console.log('state after handling question list is:')
             console.log(s);
             return s;
         });

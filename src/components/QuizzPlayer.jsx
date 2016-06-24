@@ -23,7 +23,7 @@ class QuizzPlayer extends React.Component {
     }
 
     static getStores() {
-        console.log('trying to get stores');
+        console.log('QuizzerPlayer trying to get stores');
         return [QuizzStore];
     }
 
@@ -35,7 +35,8 @@ class QuizzPlayer extends React.Component {
     render() {
 
         //if (!this.props.authData || !this.props.authData.user) return (<Login data={this.props.authData}/>);
-        if (!this.props.questions && !this.props.isLoadingQuestionList) {
+        if (!this.props.currentQuestion) {
+            if(!this.props.loadingQuestionList) setTimeout(() => Actions.fetchQuestionList(), 0);
             return (<CircularProgress mode="indeterminate" on/>);
         }
         console.log('progress finished')
@@ -56,7 +57,6 @@ class QuizzPlayer extends React.Component {
                     </Row>
 
                 </Grid>
-
             </div>
         )
     }

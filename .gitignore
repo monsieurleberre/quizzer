@@ -2,3 +2,5 @@ node_modules
 npm-debug.log
 .DS_Store
 questions.json
+FirebaseConfigs.js
+tests

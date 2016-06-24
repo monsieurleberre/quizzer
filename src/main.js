@@ -1,19 +1,72 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
-import QuestionFrame from './components/QuestionFrame.jsx';
-//import JsonQuestionReader from './JsonQuestionReader'
+import ReactDOM from 'react-dom';
+import ThemeWrapper from './components/ThemeWrapper.jsx';
+import FirebaseConfigs from './sources/FirebaseConfigs';
+import FirebaseRefs from './sources/FirebaseRefs'
+import Firebase from 'firebase';
 
-//var questions = new JsonQuestionReader().refresh()
-import questions from './questions.json'
-console.log(`Matt has written ${Object.keys(questions).length} questions`)
+let testData = {
+        'questions':{
+            '0' : {
+                'question': 'Who do you really think you are ?',
+                'answerType': 'many',
+                'answers': {  
+                  '0':{ 
+                     'answer' : 'The person that is reading this' ,
+                     'score' : 1 
+                    },
+                    '1': {
+                      'answer' : 'Your parent\'s kid',
+                       'score' : 1  
+                    },  
+                    '2':{ 
+                      'answer': 'A question answerer',
+                      'score' : 1 
+                    },
+                    '3' : {  
+                      'answer': 'That other guy too' ,
+                      'score' : 1 
+                    },
+                    '4':{
+                      'answer' : 'A drunk programer' ,
+                      'score' : 1 }
+                    },
+                'tags': [ 'basic' ],
+                'explanation': 'You\'re anything but that other guy',
+                'tip': 'no tip for that question: sort yourself out'
+            },
+            '1' : {
+                'question': 'Chabada bada bada ?',
+                'answerType': 'one',
+                'answers': {  
+                  '0':{ 
+                     'answer' : 'Not really' ,
+                     'score' : 1 
+                    },
+                    '1': {
+                      'answer' : 'Absolutely',
+                       'score' : 1  
+                    },  
+                    '2':{ 
+                      'answer': 'Only on a friday',
+                      'score' : 1 
+                    }
+                },
+                'tags': [ 'basic' ],
+                'explanation': 'Boud boud blabla',
+                'tip': 'yes I\'ll give you a clue'
+            }
+        }
+}
 
-var question = {
-    "question": "Which of these systems has Cassandra emerged from?",
-    "answerType": "many",
-    "answers": {  "Amazon DynamoDB" : { "score" : 1 },  "Apache Hadoop" : { "score" : -1 },  "Cassandra itself; it's both a chicken and an egg! " : { "score" : 1 },  "Google big tables" : { "score" : 1 },  "Microsoft Azure DocumentDB" : { "score" : 1 }},
-    "tags": [ "basic" ],
-    "explanation": null,
-    "tip": null
-};
+console.log('Initializing Firebase')
+Firebase.initializeApp(FirebaseConfigs.quizzerDefaults);
 
-ReactDOM.render(<QuestionFrame question="htmlquestion" tip="htmltip" question={question}/>, document.getElementById('quizzer'));
+
+//dbref.set(questions, (err, data) => console.log(err||data||"Cassandra Data pushed!"))
+//FirebaseRefs.testDataRef().set(testData, (err, data) => console.log(err||data||'Data pushed!'))
+
+
+
+
+ReactDOM.render(<ThemeWrapper />, document.getElementById('quizzer'));

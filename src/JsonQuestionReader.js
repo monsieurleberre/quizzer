@@ -3,13 +3,13 @@ import path from 'path'
 
 export default class JsonQuestionReader{
     refresh() {
-        var QUESTIONS_FILE = path.join(__dirname, 'questions.json');
-        var jsonQuestions = fs.readFile(QUESTIONS_FILE, (err, data) => {
+        let questionFile = path.join(__dirname, 'questions.json');
+        let jsonQuestions = fs.readFile(questionFile, (err, data) => {
             if(err) throw err;
             console.log(data)
             return data;
         });
-        var questions = JSON.parse(jsonQuestions);
+        let questions = JSON.parse(jsonQuestions);
         console.log(`Matt has written ${length(questions)} questions`)
         return jsonQuestions;
     }

@@ -14,7 +14,8 @@ module.exports = {
     publicPath: '/public/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [{
@@ -22,6 +23,11 @@ module.exports = {
       loaders: ['react-hot', 'babel'],
       exclude: /node_modules/,
       include: path.join(__dirname, 'src')
+    },
+    {
+      test: /\.css$/,
+      include: [path.join(__dirname, 'src'), /flexboxgrid/],
+      loader: 'style!css?modules'
     }]
   }
 };

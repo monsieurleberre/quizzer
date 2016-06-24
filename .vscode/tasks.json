@@ -2,16 +2,32 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "gulp",
+    "command": "cmd",
     "tasks": [
         {
-            "taskName": "bundle",
+            "taskName": "clean",
+            "suppressTaskName": true,
+            "echoCommand": true,
             "isBuildCommand": true,
             "showOutput": "always",
-            "isWatching": false
+            "isWatching": false,
+            "args": [
+                "rimraf dist"
+            ]
+        },
+        {
+            "taskName": "bundle",
+            "suppressTaskName": true,
+            "echoCommand": true,
+            "isBuildCommand": true,
+            "showOutput": "always",
+            "isWatching": false,
+            "args": [
+                "cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors"
+            ]
         }
     ],
     "isShellCommand": true,
-    "args": ["--no-color"],
+    "args": ["/c"],
     "showOutput": "always"
 }

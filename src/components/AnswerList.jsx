@@ -10,10 +10,9 @@ export default class AnswerList extends React.Component {
     }
 
     render() {
-        console.log("answer keys are:" + Object.keys(this.props.answers));
         this.answerNodes = Object.keys(this.props.answers).map((a,i) => 
             <Answer answer={this.props.answers[a].answer} answerType={this.props.answerType} key={i} score={this.props.answers[a].score}/>);
-        if(this.props.answerType == "one") 
+        if(this.props.answerType == 'one') 
             return (
                 <List className="answerList">
                         {this.answerNodes}     
@@ -23,7 +22,6 @@ export default class AnswerList extends React.Component {
             return (
                 <List className="answerList">
                         {this.answerNodes}
-                    
                 </List>
             )      
     }

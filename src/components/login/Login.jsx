@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Actions from '../../actions'
 import LoginFailed from './LoginFailed.jsx'
-import QuizzStore from '../../stores/QuizzStore'
+import AuthStore from '../../stores/AuthStore'
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {withRouter} from 'react-router'
 
@@ -19,19 +19,18 @@ class Login extends React.Component {
     }
 
     static getStores() {
-        console.log('Login trying to get stores');
-        return [QuizzStore];
+        //console.log('Login trying to get AuthStore');
+        return [AuthStore];
     }
 
     static getPropsFromStores() {
-        console.log('Login getting props from store Quizzer')
-        return QuizzStore.getState();
+        //console.log('Login getting props from store AuthStore')
+        let authState = AuthStore.getState();
+        return authState;
     }
 
     onClick = () => {
         console.log('login clicked');
-        console.log(this.props.router);
-        console.log(this.props);
         Actions.login(this.state.email, this.state.password, this.props.router, this.props.location);
     }
 
@@ -44,14 +43,9 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log('rendering login, props.authdata:');
-        if(this.props.authData){
-            console.log(this.props.authData.err);
-            console.log(this.props.authData.user);
-        }
         return (
             <div className="login">
-                <LoginFailed hidden={this.props.authData && !this.props.authData.err} />
+                <LoginFailed hidden={!this.props.err} />
                 <Card>
                     <CardTitle
                         title="Hello there"
@@ -84,8 +78,7 @@ class Login extends React.Component {
 }
 
 let routedLogin = withRouter(Login);
-console.debug('routed Login component initialised : ')
-console.debug(routedLogin)
+console.debug('routed Login component initialised')
 export default routedLogin;
 
 Login.propTypes = {

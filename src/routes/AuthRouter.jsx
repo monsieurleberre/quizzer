@@ -4,53 +4,55 @@ import {
 } from 'react-router';
 import Login from '../components/login/Login.jsx';
 import QuizzPlayer from '../components/QuizzPlayer.jsx';
-import QuizzStore from '../stores/QuizzStore.js';
+import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
+
+const requireAuth = (nextState, replace, props) => {
+        if (!props.user) {
+            console.log('no user found, you need to login')
+            replace({
+                pathname: '/login',
+                state: { nextPathname: nextState.location.pathname }
+            });
+        } else {
+            console.log('no need to login, user has been found');
+        }
+    }
 
 
 @connectToStores
 class AuthRouter extends React.Component {
     constructor(props){
         super(props);
+
+        this.routes = (
+            <Route path='/'>
+                <IndexRoute component={QuizzPlayer}
+                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
+                <Route path='player' component={QuizzPlayer}
+                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
+                <Route path='login' component={Login} />
+            </Route>
+        );
     }
 
     static getStores() {
-        console.log('AuthRouter trying to get stores');
-        return [QuizzStore];
+        //console.log('AuthRouter trying to get AuthStore');
+        return [AuthStore];
     }
 
     static getPropsFromStores() {
-        console.log('AuthRouter getting props from store QuizzStore')
-        let quizzStoreState = QuizzStore.getState();
-        return { authData : quizzStoreState.authData || {} }
-    }
-
-    requireAuth = (nextState, replace) => {
-        console.log('requiring auth')
-        if (!this.props.authData || !this.props.authData.user) {
-            console.log('no user found, you need to login')
-            console.log(replace);
-            replace({
-                pathname: '/login',
-                state: { nextPathname: nextState.location.pathname }
-            });
-            console.log(this);
-        } else {
-            console.log('no need to login, I found that user');
-            console.log(this.props.authData.user)
+        //console.log('AuthRouter getting props from store AuthStore');
+        let authState = AuthStore.getState();
+        return {
+            user : authState.user,
+            err : authState.err
         }
     }
 
     render() {
-        let routes = (
-            <Route path='/'>
-                <IndexRoute component={QuizzPlayer} onEnter={this.requireAuth}/>
-                <Route path='player' component={QuizzPlayer} onEnter={this.requireAuth}/>
-                <Route path='login' component={Login} />
-            </Route>
-        )
         return (
-            <Router history={browserHistory} routes={routes}>
+            <Router history={browserHistory} routes={this.routes}>
             </Router>
             )
     }

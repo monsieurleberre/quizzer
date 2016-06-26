@@ -9,7 +9,7 @@ export default class Answer extends React.Component {
     }
 
     render() {
-        if(this.props.answerType=="one")
+        if(this.props.answerType=='one')
             //return (<Checkbox label={this.props.answer}  />)
             return (                
                 <div className="answer">

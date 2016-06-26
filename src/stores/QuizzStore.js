@@ -8,10 +8,6 @@ import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 class QuizzStore {
     constructor() {
         this.state = {
-            authData : {
-                user: null,
-                err: null,
-            },
             questions: [],
             currentQuestionIndex: 0,
             maxIndex: 0,
@@ -22,58 +18,36 @@ class QuizzStore {
         this.registerAsync(QuestionSource);
     }
 
-    @bind(Actions.login)
-    handleLogin(authData) {
-        console.log('handling Login')
-        this.setState(s => {
-            console.log('received authData: ')
-            console.log(authData);
-            s.authData = authData;
-            return s;
-        });
-        // if(!authData.err)
-        //     setTimeout(() => Actions.fetchQuestionList(), 0);
-    }
-
     @bind(Actions.fetchQuestionList)
     handleFetchQuestionList() {
         console.log('handling fetch question list')
-        if(this.state.authData && this.state.authData.user && !this.state.loadingQuestionList)
-        {
-            this.setState({loadingQuestionList: true});
-            console.log('someone asked to load the questions')
-            console.log(this)
-            setTimeout(() => this.getInstance().getQuestions(), 0);
-        }
+        if(this.state.loadingQuestionList) return;
+        this.setState({loadingQuestionList: true});
+        setTimeout(() => this.getInstance().getQuestions(), 0);
     }
 
     @bind(Actions.loadingQuestionList)
     handleLoadingQuestionList() {
         console.log('handling loadingQuestionList');
-        this.setState(s => {
-            s.loadingQuestionList = true;
-            return s;
-        });
+        this.setState({ loadingQuestionList: true });
     }
 
     @bind(Actions.setQuestionList)
     handleSetQuestionList(questions) {
-        console.log('handling questionlist set');
+        console.log('handling setQuestionList');
         this.setState(s => {
             console.log(questions)
             s.questions = questions;
             s.currentQuestion = questions[s.currentQuestionIndex];
             s.maxIndex = questions.length - 1;
             s.loadingQuestionList = false;
-            console.log('state after handling question list is:')
-            console.log(s);
             return s;
         });
     }
 
     @bind(Actions.navigateLeft)
     handleNavigateLeft() {
-        console.log('handling navigate left');
+        console.log('handling navigateLeft');
         if (this.state.currentQuestionIndex <= 0) return;
         let newIndex = this.state.currentQuestionIndex - 1;
         this.setState(s => {
@@ -85,7 +59,7 @@ class QuizzStore {
 
     @bind(Actions.navigateRight)
     handleNavigateRight() {
-        console.log('handling navigate right');
+        console.log('handling navigateRight');
         if (this.state.currentQuestionIndex >= this.state.maxIndex) return;
         let newIndex = this.state.currentQuestionIndex + 1;
         this.setState(s => {

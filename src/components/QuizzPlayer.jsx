@@ -23,13 +23,14 @@ class QuizzPlayer extends React.Component {
     }
 
     static getStores() {
-        console.log('QuizzerPlayer trying to get stores');
+        //console.log('QuizzerPlayer trying to get stores');
         return [QuizzStore];
     }
 
     static getPropsFromStores() {
-        console.log('QuizzerPlayer getting props from store Quizzer')
-        return QuizzStore.getState();
+        //console.log('QuizzerPlayer getting props from store Quizzer')
+        let quizzStoreState = QuizzStore.getState(); 
+        return quizzStoreState;
     }
 
     render() {
@@ -40,7 +41,6 @@ class QuizzPlayer extends React.Component {
             return (<CircularProgress mode="indeterminate" on/>);
         }
         console.log('progress finished')
-        console.log(this.props)
         return (
             <div classname="QuizzPlayer" width="420">
                 <Grid>

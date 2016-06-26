@@ -2,28 +2,31 @@ import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import AuthStore from '../../stores/AuthStore'
+import connectToStores from 'alt-utils/lib/connectToStores';
+import Actions from '../../actions/LoginActions'
 
-/**
- * Dialog with action buttons. The actions are passed in as an array of React objects,
- * in this example [FlatButtons](/#/components/flat-button).
- *
- * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
- */
+@connectToStores
 export default class LoginFailed extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-    };
+  }
+  
+  static getStores() {
+      //console.log('Login trying to get AuthStore');
+      return [AuthStore];
   }
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
+  static getPropsFromStores() {
+      //console.log('Login getting props from store AuthStore')
+      let authState = AuthStore.getState();
+      return authState;
+  }
 
   handleClose = () => {
-    this.setState({open: false});
+    console.log('handling close error dialog')
+    setTimeout(Actions.loginErrorSeen(true), 0);
   };
 
   render() {
@@ -32,16 +35,19 @@ export default class LoginFailed extends React.Component {
         label="Close"
         primary={true}
         onTouchTap={this.handleClose}
+        onClick={this.handleClose}
       />,
     ];
-
+    console.log('rendering LoginFailed')
+    console.log(this.props)
     return (
+
       <div>
         <Dialog
           title="Failed to login, please try again"
           actions={actions}
           modal={false}
-          open={this.state.open}
+          open={this.props.err && !this.props.errorHasBeenSeen ? true : false}
           onRequestClose={this.handleClose}
         >
           Are you sure about that password / email ?

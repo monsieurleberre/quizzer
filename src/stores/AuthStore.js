@@ -1,5 +1,5 @@
 import alt from '../alt';
-import Actions from '../actions';
+import Actions from '../actions/LoginActions';
 import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
 
 //@datasource(QuestionSource)
@@ -9,6 +9,7 @@ class AuthStore {
         this.state = {
             user: null,
             err: null,
+            errorHasBeenSeen: false,
         };
     }
 
@@ -18,8 +19,15 @@ class AuthStore {
         this.setState(s => {
             s.user = authData.user;
             s.err = authData.err;
+            s.errorHasBeenSeen = false;
             return s;
         });
+    }
+
+    @bind(Actions.loginErrorSeen)
+    handleLoginErrorSeen(errorHasBeenSeen) {
+        console.log('handling loginErrorSeen')
+        this.setState({ errorHasBeenSeen: true });
     }
 }
 

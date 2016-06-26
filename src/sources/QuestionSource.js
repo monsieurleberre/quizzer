@@ -1,4 +1,4 @@
-import Actions from '../actions';
+import Actions from '../actions/QuizzPlayerActions';
 import Firebase from 'firebase';
 import FirebaseRefs from './FirebaseRefs'
 

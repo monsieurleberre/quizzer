@@ -3,7 +3,7 @@ import {
   Router, Route, IndexRoute, browserHistory, hashHistory, Link, withRouter
 } from 'react-router';
 import Login from '../components/login/Login.jsx';
-import QuizzPlayer from '../components/QuizzPlayer.jsx';
+import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
 

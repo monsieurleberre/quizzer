@@ -2,7 +2,7 @@ import React from 'react'
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import Actions from '../../actions'
+import Actions from '../../actions/LoginActions'
 import LoginFailed from './LoginFailed.jsx'
 import AuthStore from '../../stores/AuthStore'
 import connectToStores from 'alt-utils/lib/connectToStores';
@@ -17,6 +17,8 @@ class Login extends React.Component {
             password: '',
         };
     }
+
+
 
     static getStores() {
         //console.log('Login trying to get AuthStore');
@@ -45,7 +47,7 @@ class Login extends React.Component {
     render() {
         return (
             <div className="login">
-                <LoginFailed hidden={!this.props.err} />
+                <LoginFailed />
                 <Card>
                     <CardTitle
                         title="Hello there"

@@ -3,12 +3,13 @@ import Firebase from 'firebase'
 import FirebaseRefs from '../sources/FirebaseRefs'
 import FirebaseConfigs from '../sources/FirebaseConfigs'
 
-class Actions{
+class QuizzPlayerActions{
 
     constructor(){
         //method coming from alt.createActions call
-        console.log('Actions constructor');
+        console.log('QuizzPlayerActions constructor');
         this.generateActions(
+            'loginErrorSeen',
             'fetchQuestionList',
             'loadingQuestionList',
             'setQuestionList',
@@ -49,4 +50,4 @@ class Actions{
     }
 }
 
-export default alt.createActions(Actions)
+export default alt.createActions(QuizzPlayerActions)

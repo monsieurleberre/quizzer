@@ -4,6 +4,7 @@ import {
 } from 'react-router';
 import Login from '../components/login/Login.jsx';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer.jsx';
+import QuizzEditor from '../components/quizzEditor/QuizzEditor.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
@@ -30,6 +31,8 @@ class AuthRouter extends React.Component {
                 <IndexRoute component={QuizzPlayer}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
                 <Route path='player' component={QuizzPlayer}
+                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
+                <Route path='editor' component={QuizzEditor}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
                 <Route path='login' component={Login} />
             </Route>

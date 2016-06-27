@@ -9,21 +9,16 @@ export default class Answer extends React.Component {
     }
 
     render() {
-        if(this.props.answerType=='one')
-            //return (<Checkbox label={this.props.answer}  />)
+        if(this.props.answerType=='one'){
             return (                
-                <div className="answer">
-                    <ListItem 
-                            primaryText={this.props.answer}
-                            leftCheckbox={<RadioButton checked={false}/>} />
-                </div>)
-        else
+                <RadioButton key={this.key} label={this.props.answer}/>
+                )
+        } else {
             return (
                 <div className="answer">
-                    <ListItem 
-                            primaryText={this.props.answer}
-                            leftCheckbox={<Checkbox checked={false}/>} />
+                    
                 </div>
             )
+        }
     }
 }

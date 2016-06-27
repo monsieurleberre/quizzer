@@ -12,16 +12,16 @@ export default class LoginFailed extends React.Component {
   constructor(props) {
     super(props);
   }
-  
+
   static getStores() {
-      //console.log('Login trying to get AuthStore');
-      return [AuthStore];
+    //console.log('Login trying to get AuthStore');
+    return [AuthStore];
   }
 
   static getPropsFromStores() {
-      //console.log('Login getting props from store AuthStore')
-      let authState = AuthStore.getState();
-      return authState;
+    //console.log('Login getting props from store AuthStore')
+    let authState = AuthStore.getState();
+    return authState;
   }
 
   handleClose = () => {
@@ -36,10 +36,9 @@ export default class LoginFailed extends React.Component {
         primary={true}
         onTouchTap={this.handleClose}
         onClick={this.handleClose}
-      />,
+        />,
     ];
     console.log('rendering LoginFailed')
-    console.log(this.props)
     return (
 
       <div>
@@ -49,8 +48,8 @@ export default class LoginFailed extends React.Component {
           modal={false}
           open={this.props.err && !this.props.errorHasBeenSeen ? true : false}
           onRequestClose={this.handleClose}
-        >
-          Are you sure about that password / email ?
+          >
+          Are you sure about that password / email?
         </Dialog>
       </div>
     );

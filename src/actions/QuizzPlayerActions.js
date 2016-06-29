@@ -9,7 +9,6 @@ class QuizzPlayerActions{
         //method coming from alt.createActions call
         console.log('QuizzPlayerActions constructor');
         this.generateActions(
-            'loginErrorSeen',
             'fetchQuestionList',
             'loadingQuestionList',
             'setQuestionList',

@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionFrame from './QuestionFrame.jsx'
+import CreateQuestionFrame from './CreateQuestionFrame.jsx'
 import connectToStores from 'alt-utils/lib/connectToStores';
 import QuizzStore from './../../stores/QuizzStore';
 import Login from './../login/Login.jsx'
@@ -35,24 +35,21 @@ class QuizzEditor extends React.Component {
     }
 
     render() {
-        if (!this.props.currentQuestion) {
-            if (!this.props.loadingQuestionList) setTimeout(() => PlayerActions.fetchQuestionList(), 0);
-            return (<CircularProgress mode="indeterminate" on/>);
-        }
+
+        let questionFrame = <CreateQuestionFrame />
+
         return (
             <div classname="QuizzEditor" width="420">
                 <Grid>
                     <Row middle="xs">
                         <Col xs={1}>
-                            <FlatButton icon={<ChevronLeft />} onClick={Actions.navigateLeft} />
+                            <FlatButton icon={<ChevronLeft />} onClick={PlayerActions.navigateLeft} />
                         </Col>
                         <Col>
-                            <QuestionFrame question={this.props.currentQuestion}
-                                questionIndex={this.props.currentQuestionIndex}
-                                questionsCount={this.props.questions.length} />
+                            {questionFrame}
                         </Col>
                         <Col xs={1}>
-                            <FlatButton icon={<ChevronRight />} onClick={Actions.navigateRight} />
+                            <FlatButton icon={<ChevronRight />} onClick={PlayerActions.navigateRight} />
                         </Col>
                     </Row>
 

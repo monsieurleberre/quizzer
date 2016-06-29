@@ -10,6 +10,8 @@ class QuizzEditorActions{
         this.generateActions(
             'questionPushed',
             'questionPushedFailed',
+            'delete',
+            'save'
         )
     }
 }

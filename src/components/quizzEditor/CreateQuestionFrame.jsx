@@ -25,7 +25,8 @@ export default class CreateQuestionFrame extends React.Component {
                                 hintText="Enter your question here"
                                 floatingLabelText="Question"
                                 type="text" /><br />
-                        </CardText>                   
+                        </CardText>
+                             
                     </CardTitle>
                     <FlatButton label="Delete"
                         secondary={true}

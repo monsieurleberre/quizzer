@@ -3,6 +3,7 @@ import mui from 'material-ui'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AuthRouter from '../routes/AuthRouter.jsx';
+import Quizzer from './Quizzer.jsx';
 
 const muiTheme = getMuiTheme({
     
@@ -17,7 +18,9 @@ export default class ThemeWrapper extends React.Component {
         return (
             <div className="themeWrapper" width="400">
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AuthRouter />
+                    <AuthRouter>
+                        <Quizzer />
+                    </AuthRouter>
                 </MuiThemeProvider>
             </div>        
             )

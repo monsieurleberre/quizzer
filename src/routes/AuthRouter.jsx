@@ -5,8 +5,11 @@ import {
 import Login from '../components/login/Login.jsx';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer.jsx';
 import QuizzEditor from '../components/quizzEditor/QuizzEditor.jsx';
+import Quizzer from '../components/Quizzer.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
+
+console.log('importing AuthRouter')
 
 const requireAuth = (nextState, replace, props) => {
         if (!props.user) {
@@ -27,13 +30,16 @@ class AuthRouter extends React.Component {
         super(props);
 
         this.routes = (
-            <Route path='/'>
+            <Route path='/'
+            // component={Quizzer}
+            >
                 <IndexRoute component={QuizzPlayer}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
                 <Route path='player' component={QuizzPlayer}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
                 <Route path='editor' component={QuizzEditor}
-                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
+                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}
+                    onLeave={() => {console.log('leaving editor')}} />
                 <Route path='login' component={Login} />
             </Route>
         );
@@ -47,16 +53,21 @@ class AuthRouter extends React.Component {
     static getPropsFromStores() {
         //console.log('AuthRouter getting props from store AuthStore');
         let authState = AuthStore.getState();
+        console.log('AuthRouter getting AuthStore state')
+        console.log(authState)
         return {
             user : authState.user,
             err : authState.err
         }
     }
 
+    componentWillUnmount = () => {
+        console.log('AuthRouterUnMounting')
+    }
+
     render() {
         return (
-            <Router history={browserHistory} routes={this.routes}>
-            </Router>
+            <Router history={browserHistory} routes={this.routes} />
             )
     }
 }

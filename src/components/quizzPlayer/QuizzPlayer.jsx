@@ -51,6 +51,9 @@ class QuizzPlayer extends React.Component {
                         <Col xs={1}>
                             <FlatButton icon={<ChevronRight />} onClick={Actions.navigateRight} /></Col>
                     </Row>
+                    <Row>
+                        <FlatButton label="Edit" onClick={Actions.edit} />
+                    </Row>
 
                 </Grid>
             </div>

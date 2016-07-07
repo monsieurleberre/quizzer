@@ -1,15 +1,12 @@
 import React from 'react'
-import {Card, CardText, CardTitle} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import AppBar from 'material-ui/AppBar';
 import Actions from '../../actions/LoginActions'
-import LoginFailed from './LoginFailed.jsx'
 import AuthStore from '../../stores/AuthStore'
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {withRouter} from 'react-router'
 
 @connectToStores
-class Login extends React.Component {
+class Quizzer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

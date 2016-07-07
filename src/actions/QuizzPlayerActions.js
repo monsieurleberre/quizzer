@@ -2,6 +2,7 @@ import alt from '../alt'
 import Firebase from 'firebase'
 import FirebaseRefs from '../sources/FirebaseRefs'
 import FirebaseConfigs from '../sources/FirebaseConfigs'
+import browserHistory from 'react-router'
 
 class QuizzPlayerActions{
 
@@ -14,8 +15,13 @@ class QuizzPlayerActions{
             'setQuestionList',
             'setQuestionListFailed',
             'navigateLeft',
-            'navigateRight',
+            'navigateRight'
         )
+    }
+
+    edit(question) {
+        console.log('handling edit')
+        browserHistory.push('/editor')
     }
 }
 

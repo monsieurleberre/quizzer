@@ -5,7 +5,8 @@ import {
 import Login from '../components/login/Login.jsx';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer.jsx';
 import QuizzEditor from '../components/quizzEditor/QuizzEditor.jsx';
-import Quizzer from '../components/Quizzer.jsx';
+//import Quizzer from '../components/Quizzer.jsx';
+import NavBar from '../components/NavBar.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
 
@@ -29,15 +30,21 @@ class AuthRouter extends React.Component {
     constructor(props){
         super(props);
 
+        const Quizzer = ({content, navbar}) => (
+            <div className='Quizzer'>
+                {navbar || 'No NavBar supplied'}
+                {content || 'No content supplied'}
+            </div>
+        )
+
         this.routes = (
-            <Route path='/'
-            // component={Quizzer}
-            >
-                <IndexRoute component={QuizzPlayer}
+            <Route path='/' component={Quizzer} >
+                <IndexRoute components={{content: QuizzPlayer, navbar: NavBar}}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
-                <Route path='player' component={QuizzPlayer}
-                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
-                <Route path='editor' component={QuizzEditor}
+                <Route path='player' components={{content: QuizzPlayer, navbar: NavBar}}
+                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}
+                    onLeave={() => {console.log('leaving player')}} />
+                <Route path='editor' components={{content: QuizzEditor, navbar: NavBar}}
                     onEnter={(ns, r) => requireAuth(ns, r, this.props)}
                     onLeave={() => {console.log('leaving editor')}} />
                 <Route path='login' component={Login} />

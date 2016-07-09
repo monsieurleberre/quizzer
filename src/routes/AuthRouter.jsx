@@ -5,15 +5,18 @@ import {
 import Login from '../components/login/Login.jsx';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer.jsx';
 import QuizzEditor from '../components/quizzEditor/QuizzEditor.jsx';
-//import Quizzer from '../components/Quizzer.jsx';
-import NavBar from '../components/NavBar.jsx';
+import Quizzer from '../components/Quizzer.jsx';
+import NavBar from '../components/navBar/NavBar.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
+import LoginActions from '../actions/LoginActions';
 
 console.log('importing AuthRouter')
 
-const requireAuth = (nextState, replace, props) => {
-        if (!props.user) {
+const requireAuth = (nextState, replace) => {
+        console.log('trying to retrieve current user')
+        let user = LoginActions.tryRetrieveUser()
+        if (!user) {
             console.log('no user found, you need to login')
             replace({
                 pathname: '/login',
@@ -30,24 +33,17 @@ class AuthRouter extends React.Component {
     constructor(props){
         super(props);
 
-        const Quizzer = ({content, navbar}) => (
-            <div className='Quizzer'>
-                {navbar || 'No NavBar supplied'}
-                {content || 'No content supplied'}
-            </div>
-        )
-
         this.routes = (
             <Route path='/' component={Quizzer} >
                 <IndexRoute components={{content: QuizzPlayer, navbar: NavBar}}
-                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}/>
+                    onEnter={(ns, r) => requireAuth(ns, r)}/>
                 <Route path='player' components={{content: QuizzPlayer, navbar: NavBar}}
-                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}
+                    onEnter={(ns, r) => requireAuth(ns, r)}
                     onLeave={() => {console.log('leaving player')}} />
                 <Route path='editor' components={{content: QuizzEditor, navbar: NavBar}}
-                    onEnter={(ns, r) => requireAuth(ns, r, this.props)}
+                    onEnter={(ns, r) => requireAuth(ns, r)}
                     onLeave={() => {console.log('leaving editor')}} />
-                <Route path='login' component={Login} />
+                <Route path='login' components={{content: Login}} />
             </Route>
         );
     }

@@ -2,7 +2,7 @@ import alt from '../alt'
 import Firebase from 'firebase'
 import FirebaseRefs from '../sources/FirebaseRefs'
 import FirebaseConfigs from '../sources/FirebaseConfigs'
-import browserHistory from 'react-router'
+import {browserHistory} from 'react-router'
 
 class QuizzPlayerActions{
 

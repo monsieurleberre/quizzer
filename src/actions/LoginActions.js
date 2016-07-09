@@ -16,11 +16,11 @@ class LoginActions{
     login(email, password, router, location){
         return (dispatch) => {
 
-            email = email || FirebaseConfigs.email;
-            console.log(`email is ${email}`);
-            password = password || FirebaseConfigs.password;
+            let defaultedEmail = email || FirebaseConfigs.email;
+            console.log(`email is ${defaultedEmail}`);
+            let defaultedPassword = password || FirebaseConfigs.password;
 
-            Firebase.auth().signInWithEmailAndPassword(email, password)
+            Firebase.auth().signInWithEmailAndPassword(defaultedEmail, defaultedPassword)
                 .then(user => {
                     console.log('dispatching authData :)');
                     dispatch({user: user, err: null})
@@ -38,9 +38,15 @@ class LoginActions{
                     console.log(message);
                     dispatch({user: null, err: message})
                 });
-
         }
     }
+
+    tryRetrieveUser(){
+            console.log('trying to retrieve current firebase user')
+            let user = FirebaseRefs.currentUser()
+            return user;
+    }
+
 }
 
 export default alt.createActions(LoginActions)

@@ -7,8 +7,8 @@ import Paper from 'material-ui/Paper';
 import { Grid, Row, Col } from 'react-flexbox-grid/lib/index';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
-import ChevronRight from 'react-material-icons/icons/navigation/chevron-right';
-import ChevronLeft from 'react-material-icons/icons/navigation/chevron-left';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import Actions from './../../actions/QuizzEditorActions';
 import PlayerActions from './../../actions/QuizzPlayerActions';
 

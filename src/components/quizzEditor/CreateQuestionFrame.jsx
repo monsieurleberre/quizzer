@@ -3,8 +3,6 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
-import ChevronRight from 'react-material-icons/icons/navigation/chevron-right';
-import ChevronLeft from 'react-material-icons/icons/navigation/chevron-left';
 import Actions from './../../actions/QuizzEditorActions'
 
 export default class CreateQuestionFrame extends React.Component {

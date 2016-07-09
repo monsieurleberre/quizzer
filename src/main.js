@@ -59,6 +59,10 @@ let testData = {
         }
 }
 
+
+
+console.log(`module name is: ${module.name}`);
+
 console.log('Initializing Firebase')
 Firebase.initializeApp(FirebaseConfigs.quizzerDefaults);
 

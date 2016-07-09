@@ -19,7 +19,7 @@ export default class ThemeWrapper extends React.Component {
             <div className="themeWrapper" width="400">
                 <MuiThemeProvider muiTheme={muiTheme}>
                     <AuthRouter>
-                        <Quizzer />
+                        
                     </AuthRouter>
                 </MuiThemeProvider>
             </div>        

@@ -4,8 +4,6 @@ import Explanation from './Explanation.jsx'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
 import FlatButton from 'material-ui/FlatButton';
-import ChevronRight from 'react-material-icons/icons/navigation/chevron-right';
-import ChevronLeft from 'react-material-icons/icons/navigation/chevron-left';
 
 export default class QuestionFrame extends React.Component {
     constructor(props) {

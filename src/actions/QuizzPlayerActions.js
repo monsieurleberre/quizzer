@@ -8,20 +8,15 @@ class QuizzPlayerActions{
 
     constructor(){
         //method coming from alt.createActions call
-        console.log('QuizzPlayerActions constructor');
+        console.debug('QuizzPlayerActions constructor');
         this.generateActions(
-            'fetchQuestionList',
-            'loadingQuestionList',
-            'setQuestionList',
-            'setQuestionListFailed',
+            'fetchQuestions',
+            'fetchQuestionsPending',
+            'fetchQuestionsCompleted',
+            'fetchQuestionsFailed',
             'navigateLeft',
             'navigateRight'
         )
-    }
-
-    edit(question) {
-        console.log('handling edit')
-        browserHistory.push('/editor')
     }
 }
 

@@ -16,27 +16,27 @@ import {Link} from 'react-router';
 class QuizzPlayer extends React.Component {
     constructor(props) {
         super(props);
-        console.log('creating QuizzPlayer')
+        console.debug('creating QuizzPlayer')
     }
 
     componentDidMount() {
-        console.log('QuizzPlayer did mount');
+        console.debug('QuizzPlayer did mount');
     }
 
     static getStores() {
-        //console.log('QuizzerPlayer trying to get stores');
+        //console.debug('QuizzerPlayer trying to get stores');
         return [QuizzStore];
     }
 
     static getPropsFromStores() {
-        //console.log('QuizzerPlayer getting props from store Quizzer')
+        //console.debug('QuizzerPlayer getting props from store Quizzer')
         let quizzStoreState = QuizzStore.getState(); 
         return quizzStoreState;
     }
 
     render() {
         if (!this.props.currentQuestion) {
-            if(!this.props.loadingQuestionList) setTimeout(() => Actions.fetchQuestionList(), 0);
+            if(!this.props.fetchQuestionsPending) setTimeout(() => Actions.fetchQuestions(), 0);
             return (<CircularProgress mode="indeterminate" on/>);
         }
         return (

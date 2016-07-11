@@ -1,6 +1,6 @@
 import React from 'react'
 import AppBar from 'material-ui/AppBar';
-import Actions from '../../actions/LoginActions'
+import Actions from '../../actions/AuthActions'
 import AuthStore from '../../stores/AuthStore'
 import QuizzStore from '../../stores/QuizzStore'
 import connectToStores from 'alt-utils/lib/connectToStores';
@@ -24,12 +24,12 @@ class NavBar extends React.Component {
     }
 
     static getStores() {
-        //console.log('Quizzer trying to get Stores');
+        //console.debug('Quizzer trying to get Stores');
         return [AuthStore, QuizzStore];
     }
 
     static getPropsFromStores() {
-        //console.log('Login getting props from store AuthStore')
+        //console.debug('Login getting props from store AuthStore')
         let authState = AuthStore.getState();
         let quizzState = QuizzStore.getState();
         return { authState, quizzState };

@@ -9,21 +9,21 @@ import Quizzer from '../components/Quizzer.jsx';
 import NavBar from '../components/navBar/NavBar.jsx';
 import AuthStore from '../stores/AuthStore';
 import connectToStores from 'alt-utils/lib/connectToStores';
-import LoginActions from '../actions/LoginActions';
+import AuthActions from '../actions/AuthActions';
 
-console.log('importing AuthRouter')
+console.debug('importing AuthRouter')
 
 const requireAuth = (nextState, replace) => {
-        console.log('trying to retrieve current user')
-        let user = LoginActions.tryRetrieveUser()
+        console.debug('trying to retrieve current user')
+        let user = AuthActions.tryRetrieveUser()
         if (!user) {
-            console.log('no user found, you need to login')
+            console.debug('no user found, you need to login')
             replace({
                 pathname: '/login',
                 state: { nextPathname: nextState.location.pathname }
             });
         } else {
-            console.log('no need to login, user has been found');
+            console.debug('no need to login, user has been found');
         }
     }
 
@@ -39,25 +39,25 @@ class AuthRouter extends React.Component {
                     onEnter={(ns, r) => requireAuth(ns, r)}/>
                 <Route path='player' components={{content: QuizzPlayer, navbar: NavBar}}
                     onEnter={(ns, r) => requireAuth(ns, r)}
-                    onLeave={() => {console.log('leaving player')}} />
+                    onLeave={() => {console.debug('leaving player')}} />
                 <Route path='editor' components={{content: QuizzEditor, navbar: NavBar}}
                     onEnter={(ns, r) => requireAuth(ns, r)}
-                    onLeave={() => {console.log('leaving editor')}} />
+                    onLeave={() => {console.debug('leaving editor')}} />
                 <Route path='login' components={{content: Login}} />
             </Route>
         );
     }
 
     static getStores() {
-        //console.log('AuthRouter trying to get AuthStore');
+        //console.debug('AuthRouter trying to get AuthStore');
         return [AuthStore];
     }
 
     static getPropsFromStores() {
-        //console.log('AuthRouter getting props from store AuthStore');
+        //console.debug('AuthRouter getting props from store AuthStore');
         let authState = AuthStore.getState();
-        console.log('AuthRouter getting AuthStore state')
-        console.log(authState)
+        console.debug('AuthRouter getting AuthStore state')
+        console.debug(authState)
         return {
             user : authState.user,
             err : authState.err
@@ -65,7 +65,7 @@ class AuthRouter extends React.Component {
     }
 
     componentWillUnmount = () => {
-        console.log('AuthRouterUnMounting')
+        console.debug('AuthRouterUnMounting')
     }
 
     render() {

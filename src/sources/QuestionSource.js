@@ -5,31 +5,31 @@ import FirebaseRefs from './FirebaseRefs'
 
 const QuestionSource = {
 
-    getQuestions: {
+    fetchQuestions: {
         //need to call it remote for binding
         //state is the state of the store to bind the source to
         remote(state) {
             return new Promise((resolve, reject) => {
                 FirebaseRefs.questionsRef().once('value', snapshot => {
                     let questions = snapshot.val().questions;
-                    console.log('QuestionSource received questions');
-                    console.log(questions)
+                    console.debug('QuestionSource received questions');
+                    console.debug(questions)
                     resolve(questions);
                 });
             });
         },
 
-        loading: PlayerActions.loadingQuestionList,
-        success: PlayerActions.setQuestionList,
-        error: PlayerActions.setQuestionListFailed
+        loading: PlayerActions.fetchingQuestions,
+        success: PlayerActions.fetchQuestionsCompleted,
+        error: PlayerActions.fetchQuestionsFailed
     },
 
     pushQuestions: {
         remote(state, newQuestions) {
             return new Promise((resolve, reject) => {
                 FirebaseRefs.questionsRef('questions').push(newQuestions, result =>{
-                    console.log('new questions added');
-                    console.log(result);
+                    console.debug('new questions added');
+                    console.debug(result);
                     resolve(result)
             	})
             })

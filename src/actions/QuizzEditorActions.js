@@ -6,10 +6,12 @@ import FirebaseConfigs from '../sources/FirebaseConfigs'
 class QuizzEditorActions{
 
     constructor(){
-        console.log('QuizzEditorActions constructor');
+        console.debug('QuizzEditorActions constructor');
         this.generateActions(
-            'questionPushed',
-            'questionPushedFailed',
+            'pushQuestions',
+            'pushQuestionsPending',
+            'pushQuestionsCompleted',
+            'pushQuestionsFailed',
             'delete',
             'save'
         )

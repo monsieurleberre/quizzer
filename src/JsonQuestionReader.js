@@ -6,11 +6,11 @@ export default class JsonQuestionReader{
         let questionFile = path.join(__dirname, 'questions.json');
         let jsonQuestions = fs.readFile(questionFile, (err, data) => {
             if(err) throw err;
-            console.log(data)
+            console.debug(data)
             return data;
         });
         let questions = JSON.parse(jsonQuestions);
-        console.log(`Matt has written ${length(questions)} questions`)
+        console.debug(`Matt has written ${length(questions)} questions`)
         return jsonQuestions;
     }
 }

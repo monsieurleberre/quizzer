@@ -16,20 +16,20 @@ import PlayerActions from './../../actions/QuizzPlayerActions';
 class QuizzEditor extends React.Component {
     constructor(props) {
         super(props);
-        console.log('creating QuizzEditor')
+        console.debug('creating QuizzEditor')
     }
 
     componentDidMount() {
-        console.log('QuizzEditor did mount');
+        console.debug('QuizzEditor did mount');
     }
 
     static getStores() {
-        //console.log('QuizzerPlayer trying to get stores');
+        //console.debug('QuizzerPlayer trying to get stores');
         return [QuizzStore];
     }
 
     static getPropsFromStores() {
-        //console.log('QuizzerPlayer getting props from store Quizzer')
+        //console.debug('QuizzerPlayer getting props from store Quizzer')
         let quizzStoreState = QuizzStore.getState();
         return quizzStoreState;
     }

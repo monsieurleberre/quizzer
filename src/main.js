@@ -61,16 +61,12 @@ let testData = {
 
 
 
-console.log(`module name is: ${module.name}`);
+console.debug(`module name is: ${module.name}`);
 
-console.log('Initializing Firebase')
+console.debug('Initializing Firebase')
 Firebase.initializeApp(FirebaseConfigs.quizzerDefaults);
 
-
-//dbref.set(questions, (err, data) => console.log(err||data||"Cassandra Data pushed!"))
-//FirebaseRefs.testDataRef().set(testData, (err, data) => console.log(err||data||'Data pushed!'))
-
-
-
+//dbref.set(questions, (err, data) => console.debug(err||data||"Cassandra Data pushed!"))
+//FirebaseRefs.testDataRef().set(testData, (err, data) => console.debug(err||data||'Data pushed!'))
 
 ReactDOM.render(<ThemeWrapper />, document.getElementById('quizzer'));

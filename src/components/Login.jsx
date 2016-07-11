@@ -1,6 +1,6 @@
 import React from 'react'
 import AppBar from 'material-ui/AppBar';
-import Actions from '../../actions/LoginActions'
+import Actions from '../../actions/AuthActions'
 import AuthStore from '../../stores/AuthStore'
 import connectToStores from 'alt-utils/lib/connectToStores';
 import {withRouter} from 'react-router'
@@ -16,18 +16,18 @@ class Quizzer extends React.Component {
     }
 
     static getStores() {
-        //console.log('Login trying to get AuthStore');
+        //console.debug('Login trying to get AuthStore');
         return [AuthStore];
     }
 
     static getPropsFromStores() {
-        //console.log('Login getting props from store AuthStore')
+        //console.debug('Login getting props from store AuthStore')
         let authState = AuthStore.getState();
         return authState;
     }
 
     onClick = () => {
-        console.log('login clicked');
+        console.debug('login clicked');
         Actions.login(this.state.email, this.state.password, this.props.router, this.props.location);
     }
 

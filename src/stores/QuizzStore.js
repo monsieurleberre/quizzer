@@ -11,43 +11,43 @@ class QuizzStore {
             questions: [],
             currentQuestionIndex: 0,
             maxIndex: 0,
-            loadingQuestionList: false
+            fetchQuestionsPending: false
         };
-        console.log(this)
+        console.debug(this)
 
         this.registerAsync(QuestionSource);
     }
 
-    @bind(Actions.fetchQuestionList)
-    handleFetchQuestionList() {
-        console.log('handling fetch question list')
-        if(this.state.loadingQuestionList) return;
-        this.setState({loadingQuestionList: true});
-        setTimeout(() => this.getInstance().getQuestions(), 0);
+    @bind(Actions.fetchQuestions)
+    handleFetchedQuestions() {
+        console.debug('handling fetch questions')
+        if(this.state.fetchQuestionsPending) return;
+        this.setState({fetchQuestionsPending: true});
+        setTimeout(() => this.getInstance().fetchQuestions(), 0);
     }
 
-    @bind(Actions.loadingQuestionList)
-    handleLoadingQuestionList() {
-        console.log('handling loadingQuestionList');
-        this.setState({ loadingQuestionList: true });
+    @bind(Actions.fetchQuestionsPending)
+    handleFetchQuestionsPending() {
+        console.debug('handling fetchQuestionsPending');
+        this.setState({ fetchQuestionsPending: true });
     }
 
-    @bind(Actions.setQuestionList)
-    handleSetQuestionList(questions) {
-        console.log('handling setQuestionList');
+    @bind(Actions.fetchQuestionsCompleted)
+    handleFetchQuestionsCompleted(questions) {
+        console.debug('handling fetchQuestionsCompleted');
         this.setState(s => {
-            console.log(questions)
+            console.debug(questions)
             s.questions = questions;
             s.currentQuestion = questions[s.currentQuestionIndex];
             s.maxIndex = questions.length - 1;
-            s.loadingQuestionList = false;
+            s.fetchQuestionsPending = false;
             return s;
         });
     }
 
     @bind(Actions.navigateLeft)
     handleNavigateLeft() {
-        console.log('handling navigateLeft');
+        console.debug('handling navigateLeft');
         if (this.state.currentQuestionIndex <= 0) return;
         let newIndex = this.state.currentQuestionIndex - 1;
         this.setState(s => {
@@ -59,7 +59,7 @@ class QuizzStore {
 
     @bind(Actions.navigateRight)
     handleNavigateRight() {
-        console.log('handling navigateRight');
+        console.debug('handling navigateRight');
         if (this.state.currentQuestionIndex >= this.state.maxIndex) return;
         let newIndex = this.state.currentQuestionIndex + 1;
         this.setState(s => {

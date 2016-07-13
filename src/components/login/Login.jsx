@@ -26,12 +26,18 @@ class Login extends React.Component {
     static getPropsFromStores() {
         //console.debug('Login getting props from store AuthStore')
         let authState = AuthStore.getState();
-        return authState;
+                return authState;
     }
 
     onClick = () => {
         console.debug('login clicked');
         Actions.fetchAuthData(this.state.email, this.state.password);
+        //console.debug('transition to next router location')
+        // if (location.state && location.state.nextPathname) {
+        //     router.replace(location.state.nextPathname)
+        // } else {
+        //     router.replace('/')
+        // }
     }
 
     passwordChanged = (password) => {

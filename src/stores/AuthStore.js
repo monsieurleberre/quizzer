@@ -78,7 +78,7 @@ class AuthStore {
         });
         console.debug(alt)
         let jsonState = alt.takeSnapshot();
-        // LocalStorageHelper.setItem('AuthStore', jsonState);
+        LocalStorageHelper.setItem('AuthStore', jsonState);
     }
 
     @bind(Actions.fetchAuthDataPending)

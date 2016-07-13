@@ -38,7 +38,6 @@ export default class LoginFailed extends React.Component {
         onClick={this.handleClose}
         />,
     ];
-    console.debug('rendering LoginFailed')
     return (
 
       <div>

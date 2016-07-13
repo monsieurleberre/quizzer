@@ -25,13 +25,6 @@ const AuthSource = {
                     console.debug('dispatching authData :)');
                     let authData = { user: user, err: null };
                     return authData;
-                    //console.debug('transition to next router location')
-
-                    // if (location.state && location.state.nextPathname) {
-                    //     router.replace(location.state.nextPathname)
-                    // } else {
-                    //     router.replace('/')
-                    // }
                 })
                 .catch(error => {
                     console.debug(error)

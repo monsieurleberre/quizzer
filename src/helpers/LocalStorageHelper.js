@@ -8,7 +8,7 @@ class LocalStorageHelper {
     static prefixKey = (key) => appPrefixKey + key.toString
 
     static setItem = (key, item) => {
-        let prefixedKey = prefixKey(key);
+        let prefixedKey = LocalStorageHelper.prefixKey(key);
         console.debug(`persisting object with key ${prefixedKey}`)
         localStorage.setItem(prefixedKey, item);
     }

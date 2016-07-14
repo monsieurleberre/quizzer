@@ -15,6 +15,8 @@ class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
+            user: null,
+            err: null
         };
     }
 
@@ -26,19 +28,37 @@ class Login extends React.Component {
     static getPropsFromStores() {
         //console.debug('Login getting props from store AuthStore')
         let authState = AuthStore.getState();
-                return authState;
+        return authState;
     }
 
     onClick = () => {
         console.debug('login clicked');
         Actions.fetchAuthData(this.state.email, this.state.password);
-        //console.debug('transition to next router location')
-        // if (location.state && location.state.nextPathname) {
-        //     router.replace(location.state.nextPathname)
-        // } else {
-        //     router.replace('/')
-        // }
     }
+
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.user || this.props.user){
+            console.debug('transition to next router location')
+
+            if (this.props.location.state && this.props.location.state.nextPathname) {
+                this.props.router.replace(this.props.location.state.nextPathname)
+            } else {
+                this.props.router.replace('/')
+            }
+        }
+    }
+
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     if(!prevProps.user && this.props.user){
+    //         console.debug('transition to next router location')
+
+    //         if (this.props.location.state && this.props.location.state.nextPathname) {
+    //             this.props.router.replace(location.state.nextPathname)
+    //         } else {
+    //             this.props.router.replace('/')
+    //         }
+    //     }
+    // }
 
     passwordChanged = (password) => {
         this.setState({ password: event.target.value });

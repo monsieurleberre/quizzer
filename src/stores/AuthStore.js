@@ -10,7 +10,7 @@ class AuthStore {
     constructor() {
         console.debug('AuthStore constructor')
         this.state = {
-            user: this._currentUser,
+            user: null,
             err: null,
             errorHasBeenSeen: false,
             fetchAuthDataPending: false,

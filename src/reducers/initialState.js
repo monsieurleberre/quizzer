@@ -1,3 +1,5 @@
+import {sampleQuestions} from '../constants/sampleQuestions';
+
 export default {
   fuelSavings: {
     newMpg: '',
@@ -14,5 +16,9 @@ export default {
       annual: 0,
       threeYear: 0
     }
+  },
+  quizzPlayer: {
+    questions: sampleQuestions,
+    currentQuestionIndex: 0,
   }
 };

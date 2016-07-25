@@ -5,15 +5,19 @@ import * as actions from '../actions/quizzPlayerActions';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer';
 
 export const QuizzPlayerPage = (props) => {
-    return (
-        <QuizzPlayer
-            questions={props.quizzPlayer.questions}
-            currentQuestionIndex={props.quizzPlayer.currentQuestionIndex}/>
-    );
+  return (
+    <QuizzPlayer
+      questions={props.quizzPlayer.questions}
+      currentQuestionIndex={props.quizzPlayer.currentQuestionIndex}
+      nextQuestion = {props.actions.nextQuestion}
+      previousQuestion = {props.actions.previousQuestion}
+      />
+  );
 };
 
 QuizzPlayerPage.propTypes = {
-    quizzPlayer: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  quizzPlayer: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

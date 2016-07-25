@@ -12,11 +12,11 @@ export default function quizzPlayerReducer(state = initialState.quizzPlayer, act
 
   switch (action.type) {
     case PREVIOUS_QUESTION:
-      // For this example, just simulating a save by changing date modified.
-      // In a real app using Redux, you might use redux-thunk and handle the async call in fuelSavingsActions.js
+      console.debug('previous question');
       return state;
 
     case NEXT_QUESTION:
+    console.debug('next question');
       return state;
 
     default:

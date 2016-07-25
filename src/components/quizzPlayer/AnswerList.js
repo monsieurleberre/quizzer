@@ -6,30 +6,28 @@ import {ONE} from '../../constants/answerTypes';
 
 const AnswerList = ({answerType, answers}) => {
     if (answerType == ONE) {
-        this.answerNodes = Object.keys(answers).map((a) =>
+        let answerNodes = Object.keys(answers).map((a) =>
             <RadioButton label={answers[a].answer}
                 value={answers[a].answer}
-                key={answers[a].answer}
-                score={answers[a].score}/>);
+                key={answers[a].answer}/>);
         return (
-            <RadioButtonGroup name="answerGroup" children={this.answerNodes} />
+            <RadioButtonGroup name="answerGroup" children={answerNodes} />
         );
     } else {
-        this.answerNodes = Object.keys(answers).map((a) =>
+        let answerNodes = Object.keys(answers).map((a) =>
             <Checkbox label={answers[a].answer}
-                key={answers[a].answer}
-                score={answers[a].score}/>);
+                key={answers[a].answer}/>);
         return (
             <div>
-                {this.answerNodes}
+                {answerNodes}
             </div>
         );
     }
 };
 
 AnswerList.propTypes = {
-    answerType: PropTypes.object.isRequired,
-    answers: PropTypes.array.isRequired
+    answerType: PropTypes.string.isRequired,
+    answers: PropTypes.object.isRequired
 };
 
 export default AnswerList;

@@ -8,22 +8,22 @@ import {sampleQuestions} from '../../constants/sampleQuestions';
 
 
 describe('<AnswerList />', () => {
-    it('should give Checkboxes for questions with a many answers', () => {
+    it('should give Checkboxes for questions with many answers', () => {
 
-        const answers = sampleQuestions.questions['0'].answers;
-        const answerType = sampleQuestions.questions['0'].answerType;
+        const answers = sampleQuestions['0'].answers;
+        const answerType = sampleQuestions['0'].answerType;
         expect(answerType).to.equal(MANY);
 
         const wrapper = shallow(<AnswerList answerType={answerType} answers={answers}/>);
-        const radioButtons = wrapper.find('Checkbox');
+        const checkBoxes = wrapper.find('Checkbox');
 
-        expect(radioButtons).to.have.length(3);
+        expect(checkBoxes).to.have.length(5);
     });
 
     it('should give RadioButtons for questions with a single answer', () => {
 
-        const answers = sampleQuestions.questions['1'].answers;
-        const answerType = sampleQuestions.questions['1'].answerType;
+        const answers = sampleQuestions['1'].answers;
+        const answerType = sampleQuestions['1'].answerType;
         expect(answerType).to.equal(ONE);
 
         const wrapper = shallow(<AnswerList answerType={answerType} answers={answers}/>);

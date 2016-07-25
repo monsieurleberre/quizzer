@@ -1,28 +1,26 @@
-import React from 'react';
-import mui from 'material-ui'
+import React, {PropTypes} from 'react';
+//import mui from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AuthRouter from '../routes/AuthRouter.jsx';
-import Quizzer from './Quizzer.jsx';
+//import AuthRouter from '../routes/AuthRouter.jsx';
+//import Quizzer from './Quizzer.jsx';
 
 const muiTheme = getMuiTheme({
-    
+
 });
 
-export default class ThemeWrapper extends React.Component {
-    constructor(props){
-        super(props);
-    }
+const ThemeWrapper = (props) => {
+    return (
+        <div className="themeWrapper" width="400">
+            <MuiThemeProvider muiTheme={muiTheme}>
+                {props.children}
+            </MuiThemeProvider>
+        </div>
+    );
+};
 
-    render() {
-        return (
-            <div className="themeWrapper" width="400">
-                <MuiThemeProvider muiTheme={muiTheme}>
-                    <AuthRouter>
-                        
-                    </AuthRouter>
-                </MuiThemeProvider>
-            </div>        
-            )
-    }
-}
+ThemeWrapper.propTypes = {
+  children: PropTypes.element
+};
+
+export default ThemeWrapper;

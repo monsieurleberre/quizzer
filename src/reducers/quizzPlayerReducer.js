@@ -11,13 +11,25 @@ import initialState from './initialState';
 export default function quizzPlayerReducer(state = initialState.quizzPlayer, action) {
 
   switch (action.type) {
-    case PREVIOUS_QUESTION:
-      console.debug('previous question');
-      return state;
+    case PREVIOUS_QUESTION: {
+      if (state.currentQuestionIndex <= 0)
+        return state;
+      let newQuestionIndex = state.currentQuestionIndex - 1;
+      return {
+        currentQuestionIndex: newQuestionIndex, 
+        ...state
+      };
+    }
 
-    case NEXT_QUESTION:
-    console.debug('next question');
-      return state;
+    case NEXT_QUESTION: {
+      if (state.currentQuestionIndex >= Object.keys(state.questions).length-1)
+        return state;
+      let newQuestionIndex = state.currentQuestionIndex + 1;
+      return {
+        currentQuestionIndex: newQuestionIndex, 
+        ...state
+      };
+    }
 
     default:
       return state;

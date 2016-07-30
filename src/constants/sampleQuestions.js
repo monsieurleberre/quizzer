@@ -48,6 +48,21 @@ export const sampleQuestions = {
         'tags': ['basic'],
         'explanation': 'Boud boud blabla',
         'tip': 'yes I\'ll give you a clue'
-    }
+    },
+    '2': {
+        'question': 'This should be the last question right ?',
+        'answerType': 'one',
+        'answers': {
+            '0': {
+                'answer': 'yes',
+                'score': 1
+            },
+            '1': {
+                'answer': 'no',
+                'score': -1
+            }
+        },
+        'tags': ['basic', 'stupid']
+    },
 
 };

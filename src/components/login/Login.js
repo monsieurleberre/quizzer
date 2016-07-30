@@ -4,11 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Actions from '../../actions/AuthActions'
 import LoginFailed from './LoginFailed.jsx'
-import AuthStore from '../../stores/AuthStore'
-import connectToStores from 'alt-utils/lib/connectToStores';
 import {withRouter} from 'react-router'
 
-@connectToStores
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -18,25 +15,17 @@ class Login extends React.Component {
             user: null,
             err: null
         };
+        this.onClick = this.onClick.bind(this);
+        this.passwordChanged = this.passwordChanged.bind(this);
+        this.emailChanged = this.emailChanged.bind(this);
     }
 
-    static getStores() {
-        //console.debug('Login trying to get AuthStore');
-        return [AuthStore];
-    }
-
-    static getPropsFromStores() {
-        //console.debug('Login getting props from store AuthStore')
-        let authState = AuthStore.getState();
-        return authState;
-    }
-
-    onClick = () => {
+    onClick() {
         console.debug('login clicked');
         Actions.fetchAuthData(this.state.email, this.state.password);
     }
 
-    componentWillReceiveProps = (nextProps) => {
+    componentWillReceiveProps(nextProps) {
         if(nextProps.user || this.props.user){
             console.debug('transition to next router location')
 
@@ -48,23 +37,11 @@ class Login extends React.Component {
         }
     }
 
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     if(!prevProps.user && this.props.user){
-    //         console.debug('transition to next router location')
-
-    //         if (this.props.location.state && this.props.location.state.nextPathname) {
-    //             this.props.router.replace(location.state.nextPathname)
-    //         } else {
-    //             this.props.router.replace('/')
-    //         }
-    //     }
-    // }
-
-    passwordChanged = (password) => {
+    passwordChanged(password) {
         this.setState({ password: event.target.value });
     }
 
-    emailChanged = (event) => {
+    emailChanged(event){
         this.setState({ email: event.target.value });
     }
 

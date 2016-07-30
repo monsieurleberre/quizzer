@@ -31,13 +31,13 @@ class QuizzPlayer extends React.Component {
             <div className="QuizzPlayer" width="420">
                 <div>
                     <span>
-                        <div ><FlatButton icon={<ChevronLeft />} onClick={this.previousQuestion} /></div>
+                        <div ><ChevronLeft onClick={this.previousQuestion} /></div>
                         <div>
                             <QuestionFrame question={questions[currentQuestionIndex]}
                                 questionIndex={currentQuestionIndex}
                                 questionsCount={Object.keys(questions).length} />
                         </div>
-                        <div><FlatButton icon={<ChevronRight />} onClick={this.nextQuestion} /></div>
+                        <div><ChevronRight onClick={this.nextQuestion} /></div>
                     </span>
                     
 
@@ -46,6 +46,8 @@ class QuizzPlayer extends React.Component {
         );
     }
 }
+//<div ><FlatButton icon={<ChevronLeft />} onClick={this.previousQuestion} /></div>
+//<div><FlatButton icon={<ChevronRight />} onClick={this.nextQuestion} /></div>
 // <div>
 //                         <FlatButton label="Edit"
 

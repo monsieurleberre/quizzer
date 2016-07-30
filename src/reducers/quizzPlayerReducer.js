@@ -16,19 +16,22 @@ export default function quizzPlayerReducer(state = initialState.quizzPlayer, act
         return state;
       let newQuestionIndex = state.currentQuestionIndex - 1;
       return {
+        ...state,
         currentQuestionIndex: newQuestionIndex, 
-        ...state
+        //...state
       };
+      //return Object.assign({}, state, { currentQuestionIndex: newQuestionIndex});
     }
 
     case NEXT_QUESTION: {
       if (state.currentQuestionIndex >= Object.keys(state.questions).length-1)
         return state;
       let newQuestionIndex = state.currentQuestionIndex + 1;
-      return {
-        currentQuestionIndex: newQuestionIndex, 
-        ...state
-      };
+      // return {
+      //   currentQuestionIndex: newQuestionIndex, 
+      //   ...state
+      // };
+      return Object.assign({}, state, { currentQuestionIndex: newQuestionIndex});
     }
 
     default:

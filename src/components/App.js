@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
+import NavBar from './navBar/NavBar';
 
 const App = (props) => {
   return (
     <div>
+      <NavBar />
       <IndexLink to="/">Home</IndexLink>
       {' | '}
       <Link to="/fuel-savings">Demo App</Link>

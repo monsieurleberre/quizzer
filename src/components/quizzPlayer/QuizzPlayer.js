@@ -31,28 +31,23 @@ class QuizzPlayer extends React.Component {
             <div className="QuizzPlayer" width="420">
                 <div>
                     <span>
-                        <div ><ChevronLeft onClick={this.previousQuestion} /></div>
+                        <div><FlatButton icon={<ChevronLeft />} onClick={this.previousQuestion} /></div>
                         <div>
                             <QuestionFrame question={questions[currentQuestionIndex]}
                                 questionIndex={currentQuestionIndex}
                                 questionsCount={Object.keys(questions).length} />
                         </div>
-                        <div><ChevronRight onClick={this.nextQuestion} /></div>
+                        <div><FlatButton icon={<ChevronRight />} onClick={this.nextQuestion} /></div>
                     </span>
-                    
+                    <div>
+                        <FlatButton label="Edit" containerElement={<Link to={'editor'} />}/>
+                    </div>
 
                 </div>
             </div>
         );
     }
 }
-//<div ><FlatButton icon={<ChevronLeft />} onClick={this.previousQuestion} /></div>
-//<div><FlatButton icon={<ChevronRight />} onClick={this.nextQuestion} /></div>
-// <div>
-//                         <FlatButton label="Edit"
-
-//                             containerElement={<Link to={'editor'} />}/>
-//                     </div>
 
 QuizzPlayer.propTypes = {
     currentQuestionIndex: PropTypes.number.isRequired,

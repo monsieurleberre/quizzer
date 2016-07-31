@@ -1,33 +1,18 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import AuthStore from '../../stores/AuthStore'
-import connectToStores from 'alt-utils/lib/connectToStores';
-import Actions from '../../actions/AuthActions'
 
-@connectToStores
 export default class LoginFailed extends React.Component {
 
   constructor(props) {
     super(props);
+    this.handleClose = this.handleClose.bind(this);
   }
 
-  static getStores() {
-    //console.debug('Login trying to get AuthStore');
-    return [AuthStore];
-  }
-
-  static getPropsFromStores() {
-    //console.debug('Login getting props from store AuthStore')
-    let authState = AuthStore.getState();
-    return authState;
-  }
-
-  handleClose = () => {
+  handleClose() {
     console.debug('handling close error dialog')
     setTimeout(Actions.loginErrorSeen(true), 0);
-  };
+  }
 
   render() {
     const actions = [

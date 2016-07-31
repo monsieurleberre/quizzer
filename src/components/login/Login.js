@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import Actions from '../../actions/AuthActions'
-import LoginFailed from './LoginFailed.jsx'
-import {withRouter} from 'react-router'
+import LoginFailed from './LoginFailed';
+import {withRouter} from 'react-router';
 
 class Login extends React.Component {
     constructor(props) {
@@ -22,22 +21,21 @@ class Login extends React.Component {
 
     onClick() {
         console.debug('login clicked');
-        Actions.fetchAuthData(this.state.email, this.state.password);
     }
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.user || this.props.user){
-            console.debug('transition to next router location')
+            console.debug('transition to next router location');
 
             if (this.props.location.state && this.props.location.state.nextPathname) {
-                this.props.router.replace(this.props.location.state.nextPathname)
+                this.props.router.replace(this.props.location.state.nextPathname);
             } else {
-                this.props.router.replace('/')
+                this.props.router.replace('/');
             }
         }
     }
 
-    passwordChanged(password) {
+    passwordChanged(event) {
         this.setState({ password: event.target.value });
     }
 
@@ -75,13 +73,13 @@ class Login extends React.Component {
                     </CardText>
                 </Card>
             </div>
-        )
+        );
     }
 
 }
 
 let routedLogin = withRouter(Login);
-console.debug('routed Login component initialised')
+console.debug('routed Login component initialised');
 export default routedLogin;
 
 Login.propTypes = {

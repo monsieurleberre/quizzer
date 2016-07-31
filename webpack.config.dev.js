@@ -43,5 +43,10 @@ export default {
       {test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'},
       {test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'sass?sourceMap']}
     ]
+  },
+  resolve:{
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    }
   }
 };

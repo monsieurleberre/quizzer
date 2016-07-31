@@ -3,7 +3,7 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu'
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 
 export default class PopoverNavMenu extends React.Component {
 
@@ -13,9 +13,11 @@ export default class PopoverNavMenu extends React.Component {
     this.state = {
       open: false,
     };
+    this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleTouchTap = this.handleTouchTap.bind(this);
   }
 
-  handleTouchTap = (event) => {
+  handleTouchTap(event){
     // This prevents ghost click.
     event.preventDefault();
 
@@ -23,13 +25,13 @@ export default class PopoverNavMenu extends React.Component {
       open: true,
       anchorEl: event.currentTarget,
     });
-  };
+  }
 
-  handleRequestClose = () => {
+  handleRequestClose() {
     this.setState({
       open: false,
     });
-  };
+  }
 
   render() {
     return (

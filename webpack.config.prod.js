@@ -83,5 +83,10 @@ export default {
         loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap')
       }
     ]
+  },
+  resolve:{
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    }
   }
 };

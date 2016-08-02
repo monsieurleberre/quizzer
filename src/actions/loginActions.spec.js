@@ -1,4 +1,4 @@
-import {expect} from 'chai';
+import expect from 'expect';
 import * as ActionCreators from './loginActions';
 import * as ActionTypes from '../constants/actionTypes';
 
@@ -12,6 +12,6 @@ describe('Actions', () => {
             email: email,
             password: password
         };
-        expect(ActionCreators.fetchAuthData(email, password)).to.deep.equal(expected);
+        expect(ActionCreators.fetchAuthData(email, password)).toEqual(expected);
     });
 });

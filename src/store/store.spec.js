@@ -1,6 +1,6 @@
 import * as ActionTypes from '../constants/actionTypes';
 import { createStore } from 'redux';
-import { expect } from 'chai';
+import expect from 'expect';
 import rootReducer from '../reducers';
 import calculator from '../utils/fuelSavingsCalculator';
 import dateHelper from '../utils/dateHelper';
@@ -34,7 +34,7 @@ describe('Store', () => {
       savings: calculator().calculateSavings(store.getState().fuelSavings)
     };
 
-    expect(actual.fuelSavings).to.deep.equal(expected);
+    expect(actual.fuelSavings).toEqual(expected);
   });
 
   it('should not display results when necessary data is not provided', () => {
@@ -67,7 +67,7 @@ describe('Store', () => {
     };
 
 
-    expect(actual.fuelSavings).to.deep.equal(expected);
+    expect(actual.fuelSavings).toEqual(expected);
   });
 
 
@@ -119,6 +119,6 @@ describe('Store', () => {
       savings: lastGoodSavings
     };
 
-    expect(actual.fuelSavings).to.deep.equal(expected);
+    expect(actual.fuelSavings).toEqual(expected);
   });
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {expect} from 'chai';
-import sinon from 'sinon';
+import expect, {createSpy} from 'expect';
 import FuelSavingsForm from './FuelSavingsForm';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
 import FuelSavingsResults from './FuelSavingsResults';
@@ -34,17 +33,17 @@ describe('<FuelSavingsForm />', () => {
     />);
     const allInputs = wrapper.find(FuelSavingsTextInput);
 
-    expect(allInputs).to.be.length(5);
-    expect(allInputs.at(0).props().name).to.equal('newMpg');
-    expect(allInputs.at(0).props().value).to.equal(fuelSavings.newMpg);
-    expect(allInputs.at(1).props().name).to.equal('tradeMpg');
-    expect(allInputs.at(1).props().value).to.equal(fuelSavings.tradeMpg);
-    expect(allInputs.at(2).props().name).to.equal('newPpg');
-    expect(allInputs.at(2).props().value).to.equal(fuelSavings.newPpg);
-    expect(allInputs.at(3).props().name).to.equal('tradePpg');
-    expect(allInputs.at(3).props().value).to.equal(fuelSavings.tradePpg);
-    expect(allInputs.at(4).props().name).to.equal('milesDriven');
-    expect(allInputs.at(4).props().value).to.equal(fuelSavings.milesDriven);
+    expect(allInputs.length).toBe(5);
+    expect(allInputs.at(0).props().name).toBe('newMpg');
+    expect(allInputs.at(0).props().value).toBe(fuelSavings.newMpg);
+    expect(allInputs.at(1).props().name).toBe('tradeMpg');
+    expect(allInputs.at(1).props().value).toBe(fuelSavings.tradeMpg);
+    expect(allInputs.at(2).props().name).toBe('newPpg');
+    expect(allInputs.at(2).props().value).toBe(fuelSavings.newPpg);
+    expect(allInputs.at(3).props().name).toBe('tradePpg');
+    expect(allInputs.at(3).props().value).toBe(fuelSavings.tradePpg);
+    expect(allInputs.at(4).props().name).toBe('milesDriven');
+    expect(allInputs.at(4).props().value).toBe(fuelSavings.milesDriven);
   });
 
   it('should contain options to change miles driven timeframe', () => {
@@ -76,9 +75,9 @@ describe('<FuelSavingsForm />', () => {
     const expectedOption2 = '<option value="month">Month</option>';
     const expectedOption3 = '<option value="year">Year</option>';
 
-    expect(wrapper.find('select').childAt(0).html()).to.equal(expectedOption1);
-    expect(wrapper.find('select').childAt(1).html()).to.equal(expectedOption2);
-    expect(wrapper.find('select').childAt(2).html()).to.equal(expectedOption3);
+    expect(wrapper.find('select').childAt(0).html()).toBe(expectedOption1);
+    expect(wrapper.find('select').childAt(1).html()).toBe(expectedOption2);
+    expect(wrapper.find('select').childAt(2).html()).toBe(expectedOption3);
   });
 
   it('should contain <FuelSavingsResults /> when necessary conditions are met', () => {
@@ -108,7 +107,7 @@ describe('<FuelSavingsForm />', () => {
     />);
     const expected = <FuelSavingsResults savings={fuelSavings.savings}/>;
 
-    expect(wrapper.contains(expected)).to.be.true;
+    expect(wrapper.contains(expected)).toBeTruthy();
   });
 
   it('should not contain <FuelSavingsResults /> when necessary conditions are not met', () => {
@@ -138,11 +137,11 @@ describe('<FuelSavingsForm />', () => {
     />);
     const expected = <FuelSavingsResults savings={fuelSavings.savings}/>;
 
-    expect(wrapper.contains(expected)).to.be.false;
+    expect(wrapper.contains(expected)).toBeFalsy();
   });
 
   it('should handle form submit', () => {
-    const saveFuelSavings = sinon.spy();
+    const saveFuelSavings = createSpy();
     const calculateFuelSavings = () => {};
     const fuelSavings = {
       newMpg: 20,
@@ -167,13 +166,13 @@ describe('<FuelSavingsForm />', () => {
       fuelSavings={fuelSavings}
     />);
 
-    expect(saveFuelSavings.calledOnce).to.be.false;
+    expect(saveFuelSavings).toNotHaveBeenCalled();
     wrapper.find('input[type="submit"]').simulate('click');
-    expect(saveFuelSavings.calledOnce).to.be.true;
+    expect(saveFuelSavings.calls.length).toEqual(1);
   });
 
   it('should submit appState', () => {
-    const saveFuelSavings = sinon.spy();
+    const saveFuelSavings = createSpy();
     const calculateFuelSavings = () => {};
     const fuelSavings = {
       newMpg: 20,
@@ -199,13 +198,13 @@ describe('<FuelSavingsForm />', () => {
     />);
 
     wrapper.find('input[type="submit"]').simulate('click');
-    expect(saveFuelSavings.args[0][0]).to.equal(fuelSavings);
+    expect(saveFuelSavings).toHaveBeenCalledWith(fuelSavings);
   });
 
 
   it('should calculate fuel savings on text input change', () => {
     const saveFuelSavings = () => {};
-    const calculateFuelSavings = sinon.spy();
+    const calculateFuelSavings = createSpy();
     const fuelSavings = {
       newMpg: 20,
       tradeMpg: 10,
@@ -229,14 +228,14 @@ describe('<FuelSavingsForm />', () => {
       fuelSavings={fuelSavings}
     />);
 
-    expect(calculateFuelSavings.calledOnce).to.be.false;
+    expect(calculateFuelSavings).toNotHaveBeenCalled();
     wrapper.find(FuelSavingsTextInput).first().simulate('change');
-    expect(calculateFuelSavings.calledOnce).to.be.true;
+    expect(calculateFuelSavings.calls.length).toEqual(1);
   });
 
   it('should calculate fuel savings on miles driven timeframe change', () => {
     const saveFuelSavings = () => {};
-    const calculateFuelSavings = sinon.spy();
+    const calculateFuelSavings = createSpy();
     const fuelSavings = {
       newMpg: 20,
       tradeMpg: 10,
@@ -260,9 +259,9 @@ describe('<FuelSavingsForm />', () => {
       fuelSavings={fuelSavings}
     />);
 
-    expect(calculateFuelSavings.calledOnce).to.be.false;
+    expect(calculateFuelSavings).toNotHaveBeenCalled();
     wrapper.find('select').simulate('change', {target: {value: 'year'}});
-    expect(calculateFuelSavings.calledOnce).to.be.true;
-    expect(calculateFuelSavings.args[0][2]).to.equal('year');
+    expect(calculateFuelSavings.calls.length).toEqual(1);
+    expect(calculateFuelSavings.calls[0].arguments[2]).toBe('year');
   });
 });

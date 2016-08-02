@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {expect} from 'chai';
+import expect from 'expect';
 import FuelSavingsResults from './FuelSavingsResults';
 
 describe('<FuelSavingsResults />', () => {
@@ -16,7 +16,7 @@ describe('<FuelSavingsResults />', () => {
     const actual = wrapper.find('.fuel-savings-label').text();
     const expected = 'Savings';
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 
   it('should give values a \'savings\' class when savings exist', () => {
@@ -31,7 +31,7 @@ describe('<FuelSavingsResults />', () => {
     const actual = wrapper.find('.savings').length;
     const expected = 3;
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 
   it('should display loss when savings don\'t exist', () => {
@@ -46,7 +46,7 @@ describe('<FuelSavingsResults />', () => {
     const actual = wrapper.find('.fuel-savings-label').text();
     const expected = 'Loss';
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 
   it('should give values a \'loss\' class when savings don\'t exist', () => {
@@ -60,6 +60,6 @@ describe('<FuelSavingsResults />', () => {
     const actual = wrapper.find('.loss').length;
     const expected = 3;
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 });

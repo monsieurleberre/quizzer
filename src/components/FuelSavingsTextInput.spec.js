@@ -1,17 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import chai, {expect} from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
+import expect, {createSpy} from 'expect';
 import FuelSavingsTextInput from './FuelSavingsTextInput';
-
-chai.use(sinonChai);
 
 describe('<FuelSavingsTextInput />', () => {
   it('should be an input element', () => {
     const props = {
       name: 'testName',
-      onChange: sinon.spy(),
+      onChange: createSpy(),
       placeholder: 'Type Here',
       value: 100
     };
@@ -21,13 +17,13 @@ describe('<FuelSavingsTextInput />', () => {
     const actual = wrapper.type();
     const expected = 'input';
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 
   it('should handle change', () => {
     const props = {
       name: 'newMpg',
-      onChange: sinon.spy(),
+      onChange: createSpy(),
       placeholder: 'Type Here',
       value: 100
     };
@@ -37,9 +33,9 @@ describe('<FuelSavingsTextInput />', () => {
     const actual = wrapper.type();
     const expected = 'input';
 
-    expect(actual).to.equal(expected);
-    props.onChange.should.not.have.been.called;
+    expect(actual).toBe(expected);
+    expect(props.onChange).toNotHaveBeenCalled();
     wrapper.simulate('change', {target: {value: 101}});
-    expect(props.onChange).to.have.been.calledWith('newMpg', 101);
+    expect(props.onChange).toHaveBeenCalledWith('newMpg', 101);
   });
 });

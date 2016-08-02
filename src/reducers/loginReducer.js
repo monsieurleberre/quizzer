@@ -12,5 +12,8 @@ export default function loginReducer(state = initialState.login, action) {
             newState.error = "not implemented yet";
             return newState;
         }
+        default:
+            return state;
     }
+
 }

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import expect from 'expect';
 import * as ActionCreators from './fuelSavingsActions';
 import * as ActionTypes from '../constants/actionTypes';
 
@@ -26,8 +26,8 @@ describe('Actions', () => {
       settings: appState
     };
 
-    expect(ActionCreators.saveFuelSavings(appState)).to.deep.equal(expected); // Notice use of deep because it's a nested object
-    // expect(ActionCreators.saveFuelSavings(appState)).to.equal(expected); // Fails. Not deeply equal
+    expect(ActionCreators.saveFuelSavings(appState)).toEqual(expected); // Notice use of deep because it's a nested object
+    expect(ActionCreators.saveFuelSavings(appState)).toNotBe(expected); // Fails. Not deeply equal
   });
 
   it('should create an action to calculate fuel savings', () => {
@@ -41,6 +41,6 @@ describe('Actions', () => {
       value
     };
 
-    expect(ActionCreators.calculateFuelSavings(appState, fieldName, value)).to.deep.equal(expected);
+    expect(ActionCreators.calculateFuelSavings(appState, fieldName, value)).toEqual(expected);
   });
 });

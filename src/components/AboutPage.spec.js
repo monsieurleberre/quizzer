@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {expect} from 'chai';
+import expect from 'expect';
 import AboutPage from './AboutPage';
 
 describe('<AboutPage />', () => {
@@ -9,7 +9,7 @@ describe('<AboutPage />', () => {
     const actual = wrapper.find('CardTitle').prop('title');
     const expected = 'About';
 
-    expect(actual).to.equal(expected);
+    expect(actual).toBe(expected);
   });
 
   // it('should have a card text child', () => {
@@ -25,6 +25,6 @@ describe('<AboutPage />', () => {
     const actual = wrapper.findWhere(n => n.prop('to') === '/badlink').length;
     const expected = 1;
 
-    expect(actual).to.be.equal(expected);
+    expect(actual).toEqual(expected);
   });
 });

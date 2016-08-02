@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import expect from 'expect';
 import * as ActionTypes from '../constants/actionTypes';
 import reducer from './loginReducer';
 
@@ -14,8 +14,7 @@ describe('Reducers::login', () => {
     };
 
     it('should return the existing user if any', () => {
-        let 
-        reducer.
+
     });
 
     it('should fetch auth data if user not logged in', () => {

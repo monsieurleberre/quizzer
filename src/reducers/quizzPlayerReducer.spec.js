@@ -4,12 +4,10 @@ import reducer from './quizzPlayerReducer';
 import {sampleQuestions} from '../constants/sampleQuestions';
 
 describe('Reducers::QuizzPlayer', () => {
-  const getFirstState = () => {
-    return {
+  const firstState = {
       currentQuestionIndex: 0,
       questions: sampleQuestions,
     };
-  };
 
   const getMiddleState = () => {
     return {
@@ -27,22 +25,23 @@ describe('Reducers::QuizzPlayer', () => {
 
   it('should set initial state by default', () => {
     const action = { type: 'unknown' };
-    const expected = getFirstState();
+    const expected = firstState;
 
-    expect(reducer(getFirstState(), action)).to.deep.equal(expected);
+    expect(reducer(firstState, action)).to.deep.equal(expected);
+    expect(reducer(firstState, action))
   });
 
   describe('when handling PREVIOUS_QUESTION', () => {
     it('should not go back if at the beginning', () => {
       const action = { type: ActionTypes.PREVIOUS_QUESTION, };
-      const expected = Object.assign(getFirstState());
+      const expected = Object.assign(firstState());
 
-      expect(reducer(getFirstState(), action)).to.deep.equal(expected);
+      expect(reducer(firstState(), action)).to.deep.equal(expected);
     });
 
     it('should decrement currentQuestionIndex', () => {
       const action = { type: ActionTypes.PREVIOUS_QUESTION, };
-      const expected = Object.assign(getFirstState());
+      const expected = Object.assign(firstState());
 
       expect(reducer(getMiddleState(), action)).to.deep.equal(expected);
     });

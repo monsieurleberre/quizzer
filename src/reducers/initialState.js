@@ -20,5 +20,8 @@ export default {
   quizzPlayer: {
     questions: sampleQuestions,
     currentQuestionIndex: 0,
+  },
+  login :{
+    user: null,
   }
 };

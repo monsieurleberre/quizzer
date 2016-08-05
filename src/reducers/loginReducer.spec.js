@@ -4,17 +4,25 @@ import reducer from './loginReducer';
 
 describe('Reducers::login', () => {
     const loggedInState = {
-        user : 'someValidUser',
+        user: 'someValidUser',
         error: null,
     };
 
     const loggedOffState = {
-        user : null,
+        user: null,
         error: null,
     };
 
-    it('should return the existing user if any', () => {
+    it('should set initial state by default', () => {
+        const action = { type: 'unknown' };
 
+        expect(reducer(undefined, action)).toEqual(loggedOffState); // Notice use of deep because it's a nested object
+        //expect(reducer(undefined, action)).toBe(expected); // Fails. Not deeply equal
+    });
+
+    it('should handle FETCH_AUTH_DATA', () => {
+        const action = {type: ActionTypes.FETCH_AUTH_DATA, email:'le@email.cc', password:'pwd'}
+        expect(reducer(loggedOffState, action)).toBe(loggedInState);
     });
 
     it('should fetch auth data if user not logged in', () => {

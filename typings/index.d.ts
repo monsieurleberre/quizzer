@@ -7,4 +7,5 @@
 /// <reference path="globals/mocha/index.d.ts" />
 /// <reference path="globals/react-router/index.d.ts" />
 /// <reference path="globals/react/index.d.ts" />
+/// <reference path="globals/redux-saga/index.d.ts" />
 /// <reference path="globals/webpack/index.d.ts" />

@@ -5,11 +5,11 @@
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from '../reducers';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import thunk from 'redux-thunk';
+import saga from 'redux-saga';
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState,
-    applyMiddleware(thunk,
+    applyMiddleware(saga,
       reduxImmutableStateInvariant(),
       window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )

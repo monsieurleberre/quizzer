@@ -5,11 +5,11 @@
 import {createStore, applyMiddleware} from 'redux';
 import rootReducer from '../reducers';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import saga from 'redux-saga';
+import {sagaMiddleware} from './configureSagaMiddleware';
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState,
-    applyMiddleware(saga,
+    applyMiddleware(sagaMiddleware,
       reduxImmutableStateInvariant(),
       window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )
@@ -22,6 +22,8 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
+
+  sagaMiddleware.run();
 
   return store;
 }

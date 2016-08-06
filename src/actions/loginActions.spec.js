@@ -13,5 +13,6 @@ describe('Actions', () => {
             password: password
         };
         expect(ActionCreators.fetchAuthData(email, password)).toEqual(expected);
+        
     });
 });

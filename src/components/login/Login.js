@@ -3,11 +3,14 @@ import {Card, CardText, CardTitle} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import LoginFailed from './LoginFailed';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router';
+import * as loginActions from '../../actions/loginActions';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.state = {
             email: '',
             password: '',
@@ -78,7 +81,14 @@ class Login extends React.Component {
 
 }
 
-let routedLogin = withRouter(Login);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(loginActions, dispatch)
+  };
+}
+
+
+let routedLogin = withRouter(connect(mapDispatchToProps)(Login));
 console.debug('routed Login component initialised');
 export default routedLogin;
 

@@ -24,5 +24,6 @@ export default {
   login :{
     user: null,
     error: null,
+    fetchAuthDataPending: false,
   }
 };

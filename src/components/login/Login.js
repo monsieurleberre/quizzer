@@ -22,12 +22,8 @@ class Login extends React.Component {
         this.emailChanged = this.emailChanged.bind(this);
     }
 
-    onClick() {
-        console.debug('login clicked');
-    }
-
     componentWillReceiveProps(nextProps) {
-        if(nextProps.user || this.props.user){
+        if (nextProps.user || this.props.user) {
             console.debug('transition to next router location');
 
             if (this.props.location.state && this.props.location.state.nextPathname) {
@@ -38,11 +34,15 @@ class Login extends React.Component {
         }
     }
 
+    onClick() {
+        console.debug('login clicked');
+    }
+    
     passwordChanged(event) {
         this.setState({ password: event.target.value });
     }
 
-    emailChanged(event){
+    emailChanged(event) {
         this.setState({ email: event.target.value });
     }
 
@@ -82,9 +82,9 @@ class Login extends React.Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(loginActions, dispatch)
-  };
+    return {
+        actions: bindActionCreators(loginActions, dispatch)
+    };
 }
 
 
@@ -93,7 +93,10 @@ console.debug('routed Login component initialised');
 export default routedLogin;
 
 Login.propTypes = {
-  router: React.PropTypes.shape({
-    push: React.PropTypes.func.isRequired
-  }).isRequired
+    user: React.PropTypes.object.isRequired,
+    location: React.PropTypes.object.isRequired,
+    router: React.PropTypes.shape({
+        push: React.PropTypes.func.isRequired,
+        replace: React.PropTypes.func.isRequired
+    }).isRequired
 };

@@ -11,7 +11,7 @@ export default class LoginFailed extends React.Component {
 
   handleClose() {
     console.debug('handling close error dialog')
-    setTimeout(Actions.loginErrorSeen(true), 0);
+    //setTimeout(Actions.loginErrorSeen(true), 0);
   }
 
   render() {

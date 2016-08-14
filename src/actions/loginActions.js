@@ -18,7 +18,7 @@ export const authData = {
   failure: error => actionCreator(AUTH_DATA.FAILURE, error)
 };
 
-export const fecthAuhtData = fetchEntity.bind(null, authData, FirebaseApi.auth().signInWithEmailAndPassword);
+export const fecthAuthData = fetchEntity.bind(null, authData, FirebaseApi.auth().signInWithEmailAndPassword);
 
 
 export function* tryRetrieveAuthData() {
@@ -57,7 +57,7 @@ export function* expireAuthData(timeoutInSeconds = 500) {
 const loginActions = {
   //watcher will be moved in its own saga
   //watchFetchAuthData,
-  fecthAuhtData,
+  fecthAuthData,
   //fetchAuthDataSucceeded,
   //fetchAuthDataFailed,
 };

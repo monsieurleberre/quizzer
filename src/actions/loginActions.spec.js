@@ -1,6 +1,5 @@
 import expect from 'expect';
-import * as ActionCreators from './loginActions';
-import * as ActionTypes from '../constants/actionTypes';
+import loginActions, {AUTH_DATA} from './loginActions';
 
 describe('Actions', () => {
 
@@ -8,11 +7,11 @@ describe('Actions', () => {
         const email = 'bobobo@thedomain.com';
         const password = '"password123" is actually pretty safe when you add all this gibberish after it';
         const expected = {
-            type: ActionTypes.FETCH_AUTH_DATA,
+            type: AUTH_DATA.REQUEST,
             email: email,
             password: password
         };
-        expect(ActionCreators.fetchAuthData(email, password)).toEqual(expected);
+        expect(loginActions.fetchAuthData(email, password)).toEqual(expected);
         
     });
 });

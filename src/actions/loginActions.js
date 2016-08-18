@@ -1,8 +1,4 @@
-//import 'babel-polyfill';
 import {TRY_RETRIEVE_AUTH_DATA,
-  //FETCH_AUTH_DATA,
-  //FETCH_AUTH_DATA_SUCCEEDED,
-  //FETCH_AUTH_DATA_FAILED,
   EXPIRE_AUTH_DATA} from '../constants/actionTypes';
 import { put, call, delay, } from 'redux-saga/effects';
 //import { takeLatest } from 'redux-saga';

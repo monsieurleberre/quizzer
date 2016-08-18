@@ -11,6 +11,7 @@ describe('Actions', () => {
             email: email,
             password: password
         };
+        console.log(loginActions.fetchAuthData);
         expect(loginActions.fetchAuthData(email, password)).toEqual(expected);
         
     });

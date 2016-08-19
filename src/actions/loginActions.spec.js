@@ -1,7 +1,7 @@
 import expect from 'expect';
 import loginActions, {AUTH_DATA} from './loginActions';
 
-describe('Actions', () => {
+describe('loginActions::', () => {
 
     it('should create an action to fecth authentication data from email and password', () => {
         const email = 'bobobo@thedomain.com';

@@ -8,8 +8,7 @@ import { combineReducers } from 'redux';
 const fetchLoginReducer = createReducer([
     AUTH_DATA.REQUEST,
     AUTH_DATA.SUCCESS,
-    AUTH_DATA.FAILURE],
-    authData);
+    AUTH_DATA.FAILURE]);
 
 const otherLoginReducer = function(state = initialState.login, action) {
 
@@ -28,9 +27,14 @@ const otherLoginReducer = function(state = initialState.login, action) {
     }
 };
 
+//todo: Write a function that find the value of the default param "state"
+//using reflection and pass it in as the default param of the flattened reducer
+//if it doesn't work, look at redux-merge-reducers
 const loginReducer = combineReducers({
-    fetchLoginReducer,
-    otherLoginReducer
+    fetchLoginReducer: (state = {fetchLoginReducer: undefined}, action) =>
+        fetchLoginReducer(state['fetchLoginReducer'] ? state.fetchLoginReducer : undefined, action),
+    otherLoginReducer: (state = {'otherLoginReducer': undefined}, action) => 
+        otherLoginReducer(state['otherLoginReducer'] ? state.otherLoginReducer : undefined, action)
 });
 
 export default loginReducer;

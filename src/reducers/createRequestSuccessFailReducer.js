@@ -1,21 +1,25 @@
-export default function createReducer({ types, mapActionToKey }) {
+export const initialFetchState = {
+    isFetching: false,
+    fetchedData: null,
+    error: null
+  };
+
+export default function createReducer(types) {
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected types to be an array of three elements.');
   }
   if (!types.every(t => typeof t === 'string')) {
     throw new Error('Expected types to be strings.');
   }
-  if (typeof mapActionToKey !== 'function') {
-    throw new Error('Expected mapActionToKey to be a function.');
-  }
+  // let invalids = ['request', 'success', 'failure'].filter(k => !actions[k] 
+  //   || typeof actions[k] != 'function');
+  // if (invalids.length > 0) {
+  //   throw new Error(`Expected actions to be have functions request, success and failure}`);
+  // }
 
   const [ requestType, successType, failureType ] = types;
 
-  return function reduce(state = {
-    isFetching: false,
-    fetchedData: null,
-    error: null
-  }, action) {
+  const reduce = function(state = initialFetchState, action) {
     switch (action.type) {
       case requestType:
         return {
@@ -38,4 +42,5 @@ export default function createReducer({ types, mapActionToKey }) {
         return state;
     }
   };
+  return reduce;
 }

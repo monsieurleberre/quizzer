@@ -1,8 +1,7 @@
 /* eslint-disable no-constant-condition */
-import { takeLatest, take, select } from 'redux-saga/effects';
-//import { FETCH_AUTH_DATA } from '../constants/actionTypes';
+import { takeLatest, take, select, fork } from 'redux-saga/effects';
 import loginActions, {AUTH_DATA, GET_USER} from '../actions/loginActions';
-
+import {selectors} from '../reducers/loginReducer';
 
 export function* watchFetchAuthData() {
   while (true) {
@@ -14,8 +13,13 @@ export function* watchFetchAuthData() {
 export function* handleGetUser() {
   while (true) {
     yield take(GET_USER); 
-    yield select(getUser);
+    yield fork(getUser);
   }
+}
+
+//selectors mapping
+export function* getUser(){
+  yield select(selectors.getUser);
 }
 
 const loginSagas = {

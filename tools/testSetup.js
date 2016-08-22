@@ -26,9 +26,9 @@ require('babel-register')({});
 
 // Configure JSDOM and set global variables
 // to simulate a browser environment for tests.
-let jsdom = require('jsdom').jsdom;
 
-let exposedProperties = ['window', 'navigator', 'document'];
+var jsdom = require('jsdom').jsdom; // eslint-disable-line no-var
+var exposedProperties = ['window', 'navigator', 'document']; // eslint-disable-line no-var
 
 global.document = jsdom('');
 global.window = document.defaultView;

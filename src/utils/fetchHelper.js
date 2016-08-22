@@ -3,11 +3,11 @@ import { put, call, } from 'redux-saga/effects';
 // entity :  user | repo | starred | stargazers
 // apiFn  : api.fetchUser | api.fetchRepo | ...
 
-export function* fetchEntity(entity, apiFn, args) {
-    yield put(entity.fetch(args));
+export function* fetchEntity(entityActions, apiFn, args) {
+    yield put(entityActions.request(args));
     const {response, error} = yield call(apiFn, args);
     if (response)
-        yield put(entity.success(response));
+        yield put(entityActions.success(response));
     else
-        yield put(entity.failure(error));
+        yield put(entityActions.failure(error));
 }

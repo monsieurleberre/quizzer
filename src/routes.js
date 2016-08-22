@@ -11,7 +11,7 @@ import LoginActions from './actions/loginActions';
 
 const requireAuth = (nextState, replace) => {
   console.debug('trying to retrieve current user');
-  let user = LoginActions.tryRetrieveUser();
+  let user = LoginActions.getUser();
   if (!user) {
     console.debug('no user found, you need to login');
     replace({

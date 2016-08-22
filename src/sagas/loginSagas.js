@@ -1,17 +1,26 @@
 /* eslint-disable no-constant-condition */
-import { takeLatest } from 'redux-saga';
+import { takeLatest, take, select } from 'redux-saga/effects';
 //import { FETCH_AUTH_DATA } from '../constants/actionTypes';
-import loginActions, {AUTH_DATA} from '../actions/loginActions';
+import loginActions, {AUTH_DATA, GET_USER} from '../actions/loginActions';
 
 
 export function* watchFetchAuthData() {
   while (true) {
-    yield takeLatest(AUTH_DATA.REQUEST, loginActions.fetchAuthData);
+    const {login, password} = yield take(loginActions.LOAD_USER); 
+    yield takeLatest(AUTH_DATA.REQUEST, loginActions.fetchAuthData, login, password);
+  }
+}
+
+export function* handleGetUser() {
+  while (true) {
+    yield take(GET_USER); 
+    yield select(getUser);
   }
 }
 
 const loginSagas = {
-    watchFetchAuthData
+    watchFetchAuthData,
+    handleGetUser
 };
 
 export default loginSagas;

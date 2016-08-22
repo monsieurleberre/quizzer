@@ -6,7 +6,7 @@ import LoginFailed from './LoginFailed';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router';
-import * as loginActions from '../../actions/loginActions';
+import loginActions from '../../actions/loginActions';
 
 class Login extends React.Component {
     constructor(props, context) {
@@ -15,7 +15,8 @@ class Login extends React.Component {
             email: '',
             password: '',
             user: null,
-            err: null
+            err: null,
+            isFetching: false
         };
         this.onClick = this.onClick.bind(this);
         this.passwordChanged = this.passwordChanged.bind(this);
@@ -36,6 +37,9 @@ class Login extends React.Component {
 
     onClick() {
         console.debug('login clicked');
+        loginActions.fecthAuthData({
+            email: this.state.email, 
+            password: this.state.password});
     }
     
     passwordChanged(event) {
@@ -81,14 +85,21 @@ class Login extends React.Component {
 
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(loginActions, dispatch)
     };
-}
+};
+
+const mapStateToProps = (state, { params }) => ({
+    user: loginActions.getUser(state, params.login),
+    err: loginActions.getError(state),
+    isFetching: loginActions.isFetching(state)
+});
 
 
-let routedLogin = withRouter(connect(mapDispatchToProps)(Login));
+let connectedLogin = connect(mapDispatchToProps, mapStateToProps)(Login);
+let routedLogin = withRouter(connectedLogin);
 console.debug('routed Login component initialised');
 export default routedLogin;
 

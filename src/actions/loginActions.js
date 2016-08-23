@@ -18,6 +18,7 @@ export const authData = {
 
 const fecthAuthData = fetchEntity.bind(null, authData, FirebaseApi.auth().signInWithEmailAndPassword);
 
+//this doesn't belong here
 function* expireAuthData(timeoutInSeconds = 500) {
   yield call(delay(1000 * timeoutInSeconds));
   yield put({ type: EXPIRE_AUTH_DATA });

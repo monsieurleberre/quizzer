@@ -6,6 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import rootReducer from '../reducers';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import {sagaMiddleware} from './configureSagaMiddleware';
+import {END} from 'redux-saga';
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState,
@@ -22,7 +23,8 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
-
+store.runSaga = sagaMiddleware.run;
+store.close = () => store.dispatch(END);
   sagaMiddleware.run();
 
   return store;

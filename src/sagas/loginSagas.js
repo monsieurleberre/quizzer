@@ -13,7 +13,8 @@ export function* watchFetchAuthData() {
 export function* handleGetUser() {
   while (true) {
     yield take(GET_USER); 
-    yield fork(getUser);
+    let user = yield fork(getUser);
+    if(!user) yield 
   }
 }
 
@@ -21,6 +22,15 @@ export function* handleGetUser() {
 export function* getUser(){
   yield select(selectors.getUser);
 }
+
+// trigger router navigation via history
+// do I need navigation actions/reducers etc?
+// function* watchNavigate() {
+//   while(true) {
+//     const {pathname} = yield take(actions.NAVIGATE)
+//     yield history.push(pathname)
+//   }
+// }
 
 const loginSagas = {
     watchFetchAuthData,

@@ -13,10 +13,18 @@
   "plugins": [
     "transform-object-rest-spread",
     [
-      "transform-regenerator", { 
-        "async": false,
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ],
+    [
+      "transform-regenerator",
+      {
+        "async": true,
         "asyncGenerators": false,
-        "generators": true
+        "generators": false
       }
     ]
   ]

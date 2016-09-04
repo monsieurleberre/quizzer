@@ -2,10 +2,10 @@
 const FETCH = 'REQUEST';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
-//const EXPIRE = 'EXPIRE';
+const RESET = 'RESET';
 
 export function createRequestTypes(base) {
-  return [FETCH, SUCCESS, FAILURE].reduce((acc, type) => {
+  return [FETCH, SUCCESS, FAILURE, RESET].reduce((acc, type) => {
 		acc[type] = `${base}_${type}`;
 		return acc;
 	}, {});

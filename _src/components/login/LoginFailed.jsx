@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import AuthStore from '../../stores/AuthStore'
-import connectToStores from 'alt-utils/lib/connectToStores';
+import connectToStores from 'alt-helpers/lib/connectToStores';
 import Actions from '../../actions/AuthActions'
 
 @connectToStores

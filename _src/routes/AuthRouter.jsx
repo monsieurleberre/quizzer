@@ -8,7 +8,7 @@ import QuizzEditor from '../components/quizzEditor/QuizzEditor.jsx';
 import Quizzer from '../components/Quizzer.jsx';
 import NavBar from '../components/navBar/NavBar.jsx';
 import AuthStore from '../stores/AuthStore';
-import connectToStores from 'alt-utils/lib/connectToStores';
+import connectToStores from 'alt-helpers/lib/connectToStores';
 import AuthActions from '../actions/AuthActions';
 
 console.debug('importing AuthRouter')

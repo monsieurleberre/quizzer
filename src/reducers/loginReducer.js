@@ -5,12 +5,14 @@ import createReducer from './createRequestSuccessFailReducer';
 import { combineReducers } from 'redux-immutable';
 
 //selectors
-const getUser = (state) => { return state.getIn('fetchLoginReducer','fetchedData'); };
+const getUser = (state) => { 
+    let isExpired = state.getIn(['otherLoginReducer','expired']);
+    return isExpired ? undefined : state.getIn(['fetchLoginReducer','fetchedData']); };
 const setUser = (state, newUser) => {
-    state = state.updateIn('fetchLoginReducer', 'fetchedData', newUser);
+    state = state.updateIn(['fetchLoginReducer', 'fetchedData'], u => u);
 };
-const getError = (state) => { return state.getIn('fetchLoginReducer','error'); };
-const isPending = (state) => { return state.getIn('fetchLoginReducer','isPending'); };
+const getError = (state) => { return state.getIn(['fetchLoginReducer','error']); };
+const isPending = (state) => { return state.getIn(['fetchLoginReducer','isPending']); };
 
 
 export const selectors = { getUser, getError, isPending };
@@ -18,7 +20,8 @@ export const selectors = { getUser, getError, isPending };
 const fetchAuthDataReducer = createReducer([
     AUTH_DATA.REQUEST,
     AUTH_DATA.SUCCESS,
-    AUTH_DATA.FAILURE]);
+    AUTH_DATA.FAILURE,
+    AUTH_DATA.RESET]);
 
 const otherLoginReducer = function (state = initialState.getIn(['login', 'otherLoginReducer']), action) {
 
@@ -26,7 +29,10 @@ const otherLoginReducer = function (state = initialState.getIn(['login', 'otherL
 
         case EXPIRE_AUTH_DATA: {
             console.info(`auth_data expired, will need to login again`);
-            return setUser(state, undefined);
+            return state.set('expired', true);
+        }
+        case AUTH_DATA.SUCCESS: {
+            return state.set('expired', false);
         }
         default:
             return state;

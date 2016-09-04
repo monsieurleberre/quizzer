@@ -7169,7 +7169,7 @@ declare module 'material-ui/Toolbar/ToolbarTitle' {
     export default ToolbarTitle;
 }
 
-declare module 'material-ui/utils/colorManipulator' {
+declare module 'material-ui/helpers/colorManipulator' {
     export import convertColorToString = __MaterialUI.Utils.ColorManipulator.convertColorToString;
     export import convertHexToRGB = __MaterialUI.Utils.ColorManipulator.convertHexToRGB;
     export import decomposeColor = __MaterialUI.Utils.ColorManipulator.decomposeColor;
@@ -7181,12 +7181,12 @@ declare module 'material-ui/utils/colorManipulator' {
     export import lighten = __MaterialUI.Utils.ColorManipulator.lighten;
 }
 
-declare module 'material-ui/utils/dom' {
+declare module 'material-ui/helpers/dom' {
     export import Dom = __MaterialUI.Utils.Dom;
     export default Dom;
 }
 
-declare module 'material-ui/utils/events' {
+declare module 'material-ui/helpers/events' {
     export import Events = __MaterialUI.Utils.Events;
     export default Events;
 }

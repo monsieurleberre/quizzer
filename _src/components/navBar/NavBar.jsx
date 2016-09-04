@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import Actions from '../../actions/AuthActions'
 import AuthStore from '../../stores/AuthStore'
 import QuizzStore from '../../stores/QuizzStore'
-import connectToStores from 'alt-utils/lib/connectToStores';
+import connectToStores from 'alt-helpers/lib/connectToStores';
 import {withRouter} from 'react-router'
 import IconButton from 'material-ui/IconButton';
 import LoginCircle from 'material-ui/svg-icons/action/account-circle'

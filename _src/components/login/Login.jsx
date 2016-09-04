@@ -5,7 +5,7 @@ import TextField from 'material-ui/TextField';
 import Actions from '../../actions/AuthActions'
 import LoginFailed from './LoginFailed.jsx'
 import AuthStore from '../../stores/AuthStore'
-import connectToStores from 'alt-utils/lib/connectToStores';
+import connectToStores from 'alt-helpers/lib/connectToStores';
 import {withRouter} from 'react-router'
 
 @connectToStores

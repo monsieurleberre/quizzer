@@ -1,7 +1,7 @@
 import alt from '../alt';
 import Actions from '../actions/QuizzPlayerActions';
 import QuestionSource from '../sources/QuestionSource'
-import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
+import {createStore, bind, datasource} from 'alt-helpers/lib/decorators';
 
 //@datasource(QuestionSource)
 @createStore(alt)

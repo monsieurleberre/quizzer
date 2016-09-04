@@ -31,7 +31,9 @@ fromJS({
       error: null,
       isFetching: false
     },
-    otherLoginReducer: {}
+    otherLoginReducer: {
+      expired: false
+    }
   }
 });
 console.log(initialState);

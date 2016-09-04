@@ -1,6 +1,6 @@
 import alt from '../alt';
 import Actions from '../actions/AuthActions';
-import {createStore, bind, datasource} from 'alt-utils/lib/decorators';
+import {createStore, bind, datasource} from 'alt-helpers/lib/decorators';
 import AuthSource from '../sources/AuthSource';
 import LocalStorageHelper from '../helpers/LocalStorageHelper';
 

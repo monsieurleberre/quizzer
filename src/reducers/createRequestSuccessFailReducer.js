@@ -1,13 +1,13 @@
 import {fromJS} from 'immutable';
 
 export const initialFetchState = fromJS({
-    isFetching: false,
-    fetchedData: null,
-    error: null
-  });
+  isFetching: false,
+  fetchedData: null,
+  error: null
+});
 
 export default function createReducer(types) {
-  if (!Array.isArray(types) || types.length !== 3) {
+  if (!Array.isArray(types) || types.length !== 4) {
     throw new Error('Expected types to be an array of three elements.');
   }
   if (!types.every(t => typeof t === 'string')) {
@@ -19,9 +19,9 @@ export default function createReducer(types) {
   //   throw new Error(`Expected actions to be have functions request, success and failure}`);
   // }
 
-  const [ requestType, successType, failureType ] = types;
+  const [requestType, successType, failureType, resetType] = types;
 
-  const reduce = function(state = initialFetchState, action) {
+  const reduce = function (state = initialFetchState, action) {
     switch (action.type) {
       case requestType:
         return state.merge({
@@ -37,6 +37,8 @@ export default function createReducer(types) {
           error: action.error,
           isFetching: false
         });
+      case resetType:
+        return initialFetchState;
       default:
         return state;
     }

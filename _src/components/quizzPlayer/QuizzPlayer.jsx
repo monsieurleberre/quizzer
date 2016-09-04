@@ -1,6 +1,6 @@
 import React from 'react';
 import QuestionFrame from './QuestionFrame.jsx'
-import connectToStores from 'alt-utils/lib/connectToStores';
+import connectToStores from 'alt-helpers/lib/connectToStores';
 import QuizzStore from './../../stores/QuizzStore';
 import Login from './../login/Login.jsx'
 import Paper from 'material-ui/Paper';

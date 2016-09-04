@@ -1,6 +1,6 @@
 /* eslint-disable no-constant-condition */
-import { takeLatest, take, select, fork } from 'redux-saga/effects';
-import loginActions, {AUTH_DATA, GET_USER} from '../actions/loginActions';
+import { takeLatest, take, select, fork, put, call } from 'redux-saga/effects';
+import loginActions, {AUTH_DATA, GET_USER, EXPIRE_AUTH_DATA} from '../actions/loginActions';
 import {selectors} from '../reducers/loginReducer';
 
 export function* watchFetchAuthData() {
@@ -10,11 +10,19 @@ export function* watchFetchAuthData() {
   }
 }
 
+export function* watchExpireAuthData() {
+  while (true) {
+    yield take (EXPIRE_AUTH_DATA);
+    yield put(AUTH_DATA.RESET);
+  }
+}
+
 export function* handleGetUser() {
   while (true) {
     yield take(GET_USER); 
     let user = yield fork(getUser);
-    if(!user) yield 
+    if(!user) yield call(loginActions.requireAuthData);
+    yield;
   }
 }
 
@@ -22,15 +30,6 @@ export function* handleGetUser() {
 export function* getUser(){
   yield select(selectors.getUser);
 }
-
-// trigger router navigation via history
-// do I need navigation actions/reducers etc?
-// function* watchNavigate() {
-//   while(true) {
-//     const {pathname} = yield take(actions.NAVIGATE)
-//     yield history.push(pathname)
-//   }
-// }
 
 const loginSagas = {
     watchFetchAuthData,

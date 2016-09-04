@@ -8,6 +8,15 @@ import expectImmutable from 'expect-immutable';
 expect.extend(expectImmutable);
 
 describe('Reducers::login', () => {
+    const loggingInState = fromJS({
+        fetchAuthDataReducer: {
+            fetchedData: null,
+            error: null,
+            isFetching: true
+        },
+        otherLoginReducer: { expired: false }
+    });
+
     const loggedInState = fromJS({
         fetchAuthDataReducer: {
             fetchedData: {
@@ -16,7 +25,7 @@ describe('Reducers::login', () => {
             error: null,
             isFetching: false
         },
-        otherLoginReducer: {}
+        otherLoginReducer: { expired: false }
     });
 
     const loggedOffState = fromJS({
@@ -25,7 +34,18 @@ describe('Reducers::login', () => {
             error: null,
             isFetching: false
         },
-        otherLoginReducer: {}
+        otherLoginReducer: { expired: false }
+    });
+    
+    const expiredState = fromJS({
+        fetchAuthDataReducer: {
+            fetchedData: {
+                user: { name: 'the user name' }
+            },
+            error: null,
+            isFetching: false
+        },
+        otherLoginReducer: { expired: true }
     });
 
     it('should set initial state by default', () => {
@@ -36,7 +56,17 @@ describe('Reducers::login', () => {
 
     it('should handle AUTH_DATA.REQUEST', () => {
         const action = { type: AUTH_DATA.REQUEST, email: 'le@email.cc', password: 'pwd' };
-        expect(reducer(loggedOffState, action)).toBe(loggedInState);
+        expect(reducer(loggedOffState, action)).toEqualImmutable(loggingInState);
+    });
+
+    it('should handle AUTH_DATA.SUCESS', () => {
+        const action = { type: AUTH_DATA.SUCCESS, payload: {user: { name: 'the user name' }} };
+        expect(reducer(loggingInState, action)).toEqualImmutable(loggedInState);
+        expect(reducer(expiredState, action)).toEqualImmutable(loggedInState);
+    });
+
+    it('should handle AUTH_DATA.ERROR', () => {
+
     });
 
     it('should fetch auth data if user not logged in', () => {
@@ -45,6 +75,6 @@ describe('Reducers::login', () => {
 
     it('should handle EXPIRE_AUTH_DATA', () => {
         expect(reducer(loggedInState, { type: ActionTypes.EXPIRE_AUTH_DATA, }))
-            .toEqualImmutable(loggedOffState);
+            .toEqualImmutable(expiredState);
     });
 });

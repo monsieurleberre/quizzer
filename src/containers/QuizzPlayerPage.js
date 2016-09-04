@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../actions/quizzPlayerActions';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer';
 
-export const QuizzPlayerPage = (props, context) => {
+export const QuizzPlayerPage = (props) => {
   return (
     <QuizzPlayer
       questions={props.quizzPlayer.questions}

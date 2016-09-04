@@ -8,9 +8,9 @@ import { combineReducers } from 'redux-immutable';
 const getUser = (state) => { 
     let isExpired = state.getIn(['otherLoginReducer','expired']);
     return isExpired ? undefined : state.getIn(['fetchLoginReducer','fetchedData']); };
-const setUser = (state, newUser) => {
-    state = state.updateIn(['fetchLoginReducer', 'fetchedData'], u => u);
-};
+// const setUser = (state, newUser) => {
+//     state = state.updateIn(['fetchLoginReducer', 'fetchedData'], u => u);
+// };
 const getError = (state) => { return state.getIn(['fetchLoginReducer','error']); };
 const isPending = (state) => { return state.getIn(['fetchLoginReducer','isPending']); };
 

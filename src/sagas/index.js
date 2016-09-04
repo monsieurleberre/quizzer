@@ -6,5 +6,5 @@ export default function* root() {
   yield [
     fork(loginSagas),
     fork(browserHistorySagas)
-  ]
+  ];
 }

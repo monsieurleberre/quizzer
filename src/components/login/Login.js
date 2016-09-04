@@ -43,11 +43,11 @@ class Login extends React.Component {
     }
     
     passwordChanged(event) {
-        this.setState({ password: event.target.value });
+        this.setState({ password: event.target.value });//eslint-disable-line react/no-set-state
     }
 
-    emailChanged(event) {
-        this.setState({ email: event.target.value });
+    emailChanged(event) {        
+        this.setState({ email: event.target.value });//eslint-disable-line react/no-set-state
     }
 
     render() {

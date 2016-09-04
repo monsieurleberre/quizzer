@@ -2,6 +2,7 @@
 /// <reference path="globals/babel-core/index.d.ts" />
 /// <reference path="globals/expect/index.d.ts" />
 /// <reference path="globals/firebase/index.d.ts" />
+/// <reference path="globals/immutable/index.d.ts" />
 /// <reference path="globals/jest/index.d.ts" />
 /// <reference path="globals/material-ui/index.d.ts" />
 /// <reference path="globals/mocha/index.d.ts" />

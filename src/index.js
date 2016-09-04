@@ -13,10 +13,16 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import ThemeWrapper from './ThemeWrapper';
 
 const store = configureStore();
-store.runSaga(rootSaga)
+store.runSaga(rootSaga);
 
 // Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+// also uses Immutable to change the 'routing' prop of the state, this is
+// a little coupling but could we could pass down a variable from the rootReducer...
+const history = syncHistoryWithStore(browserHistory, store, {
+  selectLocationState (state) {
+    return state.get('routing').toJS();
+  }
+});
 
 render(
   <Provider store={store}>

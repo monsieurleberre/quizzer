@@ -10,13 +10,13 @@ export const GET_ERROR = 'GET_ERROR';
 export const IS_FETCHING = 'IS_FETCHING';
 export const EXPIRE_AUTH_DATA = 'EXPIRE_AUTH_DATA';
 
-export const authData = {
+export const authDataActions = {
   request: (login, password) => actionCreator(AUTH_DATA.REQUEST, {login, password}),
   success: response => actionCreator(AUTH_DATA.SUCCESS, response),
   failure: error => actionCreator(AUTH_DATA.FAILURE, error)
 };
 
-const fecthAuthData = fetchEntity.bind(null, authData, FirebaseApi.auth().signInWithEmailAndPassword);
+const fecthAuthData = fetchEntity.bind(null, authDataActions, FirebaseApi.auth().signInWithEmailAndPassword);
 
 //this doesn't belong here
 function* expireAuthData(timeoutInSeconds = 500) {
@@ -24,7 +24,7 @@ function* expireAuthData(timeoutInSeconds = 500) {
   yield put({ type: EXPIRE_AUTH_DATA });
 }
 
-const getUser = (state) => actionCreator(GET_USER, state);
+const getUser = state => actionCreator(GET_USER, state);
 const getError = (state) => actionCreator(GET_ERROR, state);
 const isFetching = (state) => actionCreator(IS_FETCHING, state);
 

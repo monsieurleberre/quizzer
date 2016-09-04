@@ -1,14 +1,17 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import fuelSavings from './fuelSavingsReducer';
 import quizzPlayer from './quizzPlayerReducer';
 import login from './loginReducer';
-import {routerReducer} from 'react-router-redux';
+import routerReducerImmutable from './routerReducerImmutable';
+
+
+
 
 const rootReducer = combineReducers({
   fuelSavings,
   quizzPlayer,
   login,
-  routing: routerReducer
+  routing: routerReducerImmutable
 });
 
 export default rootReducer;

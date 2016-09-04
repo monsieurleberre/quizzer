@@ -1,8 +1,10 @@
-export const initialFetchState = {
+import {fromJS} from 'immutable';
+
+export const initialFetchState = fromJS({
     isFetching: false,
     fetchedData: null,
     error: null
-  };
+  });
 
 export default function createReducer(types) {
   if (!Array.isArray(types) || types.length !== 3) {
@@ -22,22 +24,19 @@ export default function createReducer(types) {
   const reduce = function(state = initialFetchState, action) {
     switch (action.type) {
       case requestType:
-        return {
-          ...state,
+        return state.merge({
           isFetching: true
-        };
+        });
       case successType:
-        return {
-          ...state,
+        return state.merge({
           fetchedData: action.payload,
           isFetching: false
-        };
+        });
       case failureType:
-        return {
-          ...state,
+        return state.merge({
           error: action.error,
           isFetching: false
-        };
+        });
       default:
         return state;
     }

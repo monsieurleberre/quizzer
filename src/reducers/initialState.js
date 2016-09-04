@@ -1,6 +1,10 @@
 import {sampleQuestions} from '../constants/sampleQuestions';
+import {fromJS, Map} from 'immutable';
 
-export default {
+
+let initialState = Map({});
+initialState = 
+fromJS({ 
   fuelSavings: {
     newMpg: '',
     tradeMpg: '',
@@ -22,8 +26,14 @@ export default {
     currentQuestionIndex: 0,
   },
   login :{
-    user: null,
-    error: null,
-    fetchAuthDataPending: false,
+    fetchAuthDataReducer:{
+      fetchedData: null,
+      error: null,
+      isFetching: false
+    },
+    otherLoginReducer: {}
   }
-};
+});
+console.log(initialState);
+console.log(initialState.get('login'));
+export default initialState;

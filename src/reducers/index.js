@@ -3,9 +3,6 @@ import quizzPlayer from './quizzPlayerReducer';
 import login from './loginReducer';
 import routerReducerImmutable from './routerReducerImmutable';
 
-
-
-
 const rootReducer = combineReducers({
   quizzPlayer,
   login,

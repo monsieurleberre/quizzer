@@ -34,7 +34,8 @@ fromJS({
     otherLoginReducer: {
       expired: false
     }
-  }
+  },
+  routing: undefined
 });
 console.log(initialState);
 console.log(initialState.get('login'));

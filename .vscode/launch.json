@@ -17,9 +17,24 @@
             "env": {
                 "NODE_ENV": "development"
             },
-            "externalConsole": false,
-            "sourceMaps": false,
+            "console": "externalTerminal",
+            "sourceMaps": true,
             "outDir": null
+        },
+        {
+            "name": "Launch via NPM",
+            "type": "node",
+            "request": "launch",
+            "stopOnEntry": true,
+            "program": "${workspaceRoot}/bin/www",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "/Users/Monsieur/.npm-packages/bin/npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
+            "port": 5858
         },
         {
             "name": "Attach",
@@ -28,7 +43,7 @@
             "port": 5858,
             "address": "localhost",
             "restart": false,
-            "sourceMaps": false,
+            "sourceMaps": true,
             "outDir": null,
             "localRoot": "${workspaceRoot}",
             "remoteRoot": null

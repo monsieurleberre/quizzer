@@ -22,7 +22,7 @@ QuizzPlayerPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    quizzPlayer: state.quizzPlayer
+    quizzPlayer: state.get('quizzPlayer')
   };
 }
 

@@ -2,7 +2,7 @@
 // This boilerplate file is likely to be the same for each project that uses Redux.
 // With Redux, the actual stores are in /reducers.
 
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from '../reducers';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import {sagaMiddleware} from './configureSagaMiddleware';
@@ -10,8 +10,8 @@ import {END} from 'redux-saga';
 
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState,
-    applyMiddleware(sagaMiddleware,
-      reduxImmutableStateInvariant(),
+    compose(applyMiddleware(sagaMiddleware),
+      //reduxImmutableStateInvariant()
       window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )
   );
@@ -25,7 +25,5 @@ export default function configureStore(initialState) {
   }
 store.runSaga = sagaMiddleware.run;
 store.close = () => store.dispatch(END);
-  sagaMiddleware.run();
-
   return store;
 }

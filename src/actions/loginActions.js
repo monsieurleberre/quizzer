@@ -24,6 +24,7 @@ const fecthAuthData = fetchEntity.bind(null, authDataActions, FirebaseApi.auth()
 const requireAuthData = (nextState, replace) => {
   console.debug('trying to retrieve current user');
   let user = loginActions.getUser();
+  console.debug(user);
   if (!user) {
     console.debug('no user found, you need to login');
     browserActions.navigate('/login', nextState.location.pathName);

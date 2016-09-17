@@ -27,15 +27,17 @@ class QuizzPlayer extends React.Component {
         if (!questions) {
             return (<CircularProgress mode="indeterminate" on/>);
         }
+        console.debug(questions);
+        console.debug(currentQuestionIndex);
         return (
             <div className="QuizzPlayer" width="420">
                 <div>
                     <span>
                         <div><FlatButton icon={<ChevronLeft />} onClick={this.previousQuestion} /></div>
                         <div>
-                            <QuestionFrame question={questions[currentQuestionIndex]}
+                            <QuestionFrame question={questions.get(`${currentQuestionIndex}`)}
                                 questionIndex={currentQuestionIndex}
-                                questionsCount={Object.keys(questions).length} />
+                                questionsCount={questions.count()} />
                         </div>
                         <div><FlatButton icon={<ChevronRight />} onClick={this.nextQuestion} /></div>
                     </span>

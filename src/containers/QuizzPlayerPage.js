@@ -5,10 +5,12 @@ import * as actions from '../actions/quizzPlayerActions';
 import QuizzPlayer from '../components/quizzPlayer/QuizzPlayer';
 
 export const QuizzPlayerPage = (props) => {
+  console.debug('QuizzPlayer gets props:');
+  console.debug(props);
   return (
     <QuizzPlayer
-      questions={props.quizzPlayer.questions}
-      currentQuestionIndex={props.quizzPlayer.currentQuestionIndex}
+      questions={props.questions}
+      currentQuestionIndex={props.currentQuestionIndex}
       nextQuestion = {props.actions.nextQuestion}
       previousQuestion = {props.actions.previousQuestion}
       />
@@ -17,12 +19,14 @@ export const QuizzPlayerPage = (props) => {
 
 QuizzPlayerPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  quizzPlayer: PropTypes.object.isRequired
+  questions: PropTypes.object.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    quizzPlayer: state.get('quizzPlayer')
+    questions: state.getIn(['quizzPlayer', 'questions']),
+    currentQuestionIndex: state.getIn(['quizzPlayer', 'currentQuestionIndex'])
   };
 }
 

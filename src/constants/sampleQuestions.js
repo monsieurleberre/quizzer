@@ -9,15 +9,15 @@ export const sampleQuestions = {
             },
             '1': {
                 'answer': 'Your parent\'s kid',
-                'score': 1
+                'score': 2
             },
             '2': {
                 'answer': 'A question answerer',
-                'score': 1
+                'score': 3
             },
             '3': {
                 'answer': 'That other guy too',
-                'score': 1
+                'score': 2
             },
             '4': {
                 'answer': 'A drunk programer',
@@ -38,7 +38,7 @@ export const sampleQuestions = {
             },
             '1': {
                 'answer': 'Absolutely',
-                'score': 1
+                'score': 6
             },
             '2': {
                 'answer': 'Only on a friday',

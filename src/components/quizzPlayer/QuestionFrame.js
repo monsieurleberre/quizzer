@@ -7,7 +7,7 @@ const QuestionFrame = ({question, questionIndex, questionsCount}) => {
         return (
             <div className="questionFrame">
                 <Card>
-                    <CardTitle title={question.question} subtitle={question.tip} />
+                    <CardTitle title={question.get('question')} subtitle={question.get('tip')} />
                     <CardHeader
                         title="This is the big daddy exams"
                         subtitle={`question ${questionIndex + 1 }/${questionsCount}`} 
@@ -21,7 +21,7 @@ const QuestionFrame = ({question, questionIndex, questionsCount}) => {
                         <img src="http://lorempixel.com/400/200/technics/" />
                     </CardMedia>
                     <CardText>
-                        <AnswerList answers={question.answers} answerType={question.answerType}/>
+                        <AnswerList answers={question.get('answers')} answerType={question.get('answerType')}/>
                     </CardText>
 
                 </Card>

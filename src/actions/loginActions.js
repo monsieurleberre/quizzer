@@ -21,9 +21,9 @@ export const authDataActions = {
 
 const fecthAuthData = fetchEntity.bind(null, authDataActions, FirebaseApi.auth().signInWithEmailAndPassword);
 
-const requireAuthData = (nextState, replace) => {
+const requireAuthData = function* (nextState, replace){
   console.debug('trying to retrieve current user');
-  let user = loginActions.getUser();
+  let user = yield put(loginActions.getUser);
   console.debug(user);
   if (!user) {
     console.debug('no user found, you need to login');

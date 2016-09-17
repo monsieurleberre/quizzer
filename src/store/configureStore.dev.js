@@ -4,13 +4,29 @@
 
 import {createStore, applyMiddleware, compose} from 'redux';
 import rootReducer from '../reducers';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+//import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import {sagaMiddleware} from './configureSagaMiddleware';
 import {END} from 'redux-saga';
+import createLogger from 'redux-logger';
+import {Iterable, Map} from 'immutable';
 
+const logger = createLogger({
+  stateTransformer: (state) => {
+    let newState = {};
+
+    for (let i of Object.keys(state)) {
+      if (Iterable.isIterable(state[i]) || Map.isMap(state[i])) {
+        newState[i] = state[i].toJS();
+      } else {
+        newState[i] = state[i];
+      }
+    }
+    return newState;
+  }
+});
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState,
-    compose(applyMiddleware(sagaMiddleware),
+    compose(applyMiddleware(sagaMiddleware, logger),
       //reduxImmutableStateInvariant()
       window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )

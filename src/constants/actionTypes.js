@@ -5,3 +5,5 @@ export const LOAD_USER = 'LOAD_USER';
 export const EXPIRE_AUTH_DATA = 'EXPIRE_AUTH_DATA';
 
 export const NAVIGATE = 'NAVIGATE';
+
+export const INCREMENT = 'INCREMENT';

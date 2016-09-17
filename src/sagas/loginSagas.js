@@ -23,7 +23,7 @@ const handleGetUser = function*() {
     console.debug("GET_USER handler started");
     yield take(GET_USER);
     console.debug("saga took GET_USER");
-    let user = yield fork(getUser);
+    let user = yield fork(selectors.getUser);
     if (!user) yield call(loginActions.requireAuthData);
     yield;
   }
@@ -31,7 +31,7 @@ const handleGetUser = function*() {
 
 //selectors mapping
 const getUser = function*() {
-  yield select(selectors.getUser);
+  yield put(GET_USER);
 };
 
 const loginSagas = {

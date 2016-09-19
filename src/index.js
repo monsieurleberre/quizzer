@@ -11,10 +11,9 @@ require('./favicon.ico'); // Tell webpack to load favicon.ico
 import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 import { syncHistoryWithStore } from 'react-router-redux';
 import ThemeWrapper from './ThemeWrapper';
-import {put} from 'redux-saga/effects';
 
 const store = configureStore();
-store.runSaga(rootSaga);
+store.runSagas(rootSaga);
 
 // Create an enhanced history that syncs navigation events with the store
 // also uses Immutable to change the 'routing' prop of the state, this is

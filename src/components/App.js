@@ -8,10 +8,9 @@ const App = (props) => {
       <NavBar />
       <IndexLink to="/">Home</IndexLink>
       {' | '}
-      <Link to="/fuel-savings">Demo App</Link>
+      <Link to="/login">Login</Link>
       {' | '}
       <Link to="/about">About</Link>
-      <br/>
       {' | '}
       <Link to="/player">Player</Link>
       <br/>

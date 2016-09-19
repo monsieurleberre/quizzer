@@ -1,5 +1,6 @@
 import {AUTH_DATA,
     EXPIRE_AUTH_DATA} from '../actions/loginActions';
+import {INCREMENT} from '../constants/actionTypes';
 import initialState from './initialState';
 import createReducer from './createRequestSuccessFailReducer';
 import { combineReducers } from 'redux-immutable';
@@ -34,6 +35,9 @@ const otherLoginReducer = function (state = initialState.getIn(['login', 'otherL
         case AUTH_DATA.SUCCESS: {
             return state.set('expired', false);
         }
+        case INCREMENT:
+            console.debug('reducer received INCREMENT');
+            return state;
         default:
             return state;
     }

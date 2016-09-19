@@ -1,1 +1,7 @@
-import INCREMENT from '../constants/actionTypes';
+import {LOAD_IMAGES} from '../constants/actionTypes';
+
+export function loadImages() {
+  return {
+    type: LOAD_IMAGES
+  };
+}

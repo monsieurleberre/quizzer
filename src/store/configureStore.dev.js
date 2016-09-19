@@ -39,7 +39,7 @@ export default function configureStore(initialState) {
       store.replaceReducer(nextReducer);
     });
   }
-store.runSaga = sagaMiddleware.run;
+store.runSagas = sagaMiddleware.run;
 store.close = () => store.dispatch(END);
   return store;
 }

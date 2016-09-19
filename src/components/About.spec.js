@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import expect from 'expect';
-import AboutPage from './AboutPage';
+import AboutPage from './About';
 
-describe('<AboutPage />', () => {
+describe('<About />', () => {
   it('should have a title called \'About\'', () => {
     const wrapper = shallow(<AboutPage />);
     const actual = wrapper.find('CardTitle').prop('title');

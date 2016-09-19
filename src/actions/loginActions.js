@@ -5,6 +5,7 @@ import actionCreator from '../helpers/actionCreator';
 import browserActions from './browserActions';
 import FirebaseApi from '../apis/FirebaseApi';
 import {fetchEntity} from '../helpers/fetchHelper';
+import {INCREMENT} from '../constants/actionTypes';
 
 export const AUTH_DATA = createRequestTypes('AUTH_DATA');
 export const GET_USER = 'GET_USER';
@@ -53,6 +54,17 @@ function* expireAuthData(timeoutInSeconds = 500) {
 const getUser = state => actionCreator(GET_USER, state);
 const getError = (state) => actionCreator(GET_ERROR, state);
 const isFetching = (state) => actionCreator(IS_FETCHING, state);
+//const loginButtonClicked = (state) => actionCreator(INCREMENT, state);
+
+
+const loginButtonClicked = function*(){
+  const action = (state) => actionCreator(INCREMENT, state);
+  console.log('putting this action');
+  console.log(action());
+  let result = yield put(action());
+  console.log('action was put');
+  console.log(result.next());
+};
 
 const loginActions = {
   fecthAuthData,
@@ -61,7 +73,8 @@ const loginActions = {
   navigateToNextPathName,
   getUser, 
   getError, 
-  isFetching
+  isFetching,
+  loginButtonClicked
 };
 
 export default loginActions;

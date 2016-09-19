@@ -37,6 +37,7 @@ class Login extends React.Component {
 
     onClick() {
         console.debug('login clicked');
+        loginActions.loginButtonClicked(this.state).next();
         loginActions.fecthAuthData({
             email: this.state.email, 
             password: this.state.password});

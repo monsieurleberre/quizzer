@@ -7,3 +7,6 @@ export const EXPIRE_AUTH_DATA = 'EXPIRE_AUTH_DATA';
 export const NAVIGATE = 'NAVIGATE';
 
 export const INCREMENT = 'INCREMENT';
+
+export const LOAD_IMAGES = 'LOAD_IMAGES';
+export const IMAGES_LOADED = 'IMAGES_LOADED';

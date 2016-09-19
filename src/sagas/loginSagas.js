@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import { takeLatest, take, select, fork, put, call } from 'redux-saga/effects';
 import loginActions, {AUTH_DATA, GET_USER, EXPIRE_AUTH_DATA} from '../actions/loginActions';
-import {LOAD_USER} from '../constants/actionTypes';
+import {LOAD_USER, INCREMENT} from '../constants/actionTypes';
 import {selectors} from '../reducers/loginReducer';
 
 const watchFetchAuthData = function*() {
@@ -10,6 +10,15 @@ const watchFetchAuthData = function*() {
     yield takeLatest(AUTH_DATA.REQUEST, loginActions.fetchAuthData, login, password);
   }
 };
+
+const watchLoginButtonClicked = function*(){
+  while(true){
+    console.debug('started to watch increment');
+    yield take(INCREMENT);
+    console.debug('received one increment');
+    
+  }
+}
 
 const watchExpireAuthData = function* () {
   while (true) {
@@ -35,6 +44,7 @@ const getUser = function*() {
 };
 
 const loginSagas = {
+  watchLoginButtonClicked,
   watchExpireAuthData,
   watchFetchAuthData,
   handleGetUser

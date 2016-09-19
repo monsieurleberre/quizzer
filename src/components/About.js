@@ -20,6 +20,6 @@ const About = ({loadImages}) => {
   );
 };
 About.propTypes = {
-  loadImages: PropTypes.function.isRequired,
+  loadImages: PropTypes.func.isRequired,
 };
 export default About;

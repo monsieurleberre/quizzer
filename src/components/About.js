@@ -6,6 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 // Since this component is simple and static, there's no parent container for it.
 const About = ({loadImages}) => {
+  console.log(loadImages);
+  loadImages.bind(this);
   return (
     <div>
       <Card>

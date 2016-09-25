@@ -1,6 +1,6 @@
-import {AUTH_DATA,
-    EXPIRE_AUTH_DATA} from '../actions/loginActions';
-import {INCREMENT} from '../constants/actionTypes';
+import {INCREMENT,
+    AUTH_DATA,
+    EXPIRE_AUTH_DATA} from '../constants/actionTypes';
 import initialState from './initialState';
 import createReducer from './createRequestSuccessFailReducer';
 import { combineReducers } from 'redux-immutable';

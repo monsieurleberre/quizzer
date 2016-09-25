@@ -1,12 +1,12 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loadImages} from '../actions/aboutActions';
+import * as actions from '../actions/aboutActions';
 import About from '../components/About';
 
 export const AboutPage = (props) => {
   console.debug('About gets props:');
-  console.debug(loadImages);
+  console.debug(actions.loadImages);
   return (
     <About loadImages={props.actions.loadImages} />
   );
@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(loadImages, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   };
 }
 

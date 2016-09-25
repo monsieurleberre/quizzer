@@ -3,8 +3,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import routes from './routes';
+import { browserHistory } from 'react-router';
+import RouterWrapper from './RouterWrapper';
 import configureStore from './store/configureStore';
 import rootSaga from './sagas';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
@@ -29,7 +29,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 render(
   <Provider store={store}>
     <ThemeWrapper>
-      <Router history={history} routes={routes} />
+      <RouterWrapper history={history} />
     </ThemeWrapper>
   </Provider>, document.getElementById('app')
 );

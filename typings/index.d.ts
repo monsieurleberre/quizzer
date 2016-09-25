@@ -6,6 +6,7 @@
 /// <reference path="globals/jest/index.d.ts" />
 /// <reference path="globals/material-ui/index.d.ts" />
 /// <reference path="globals/mocha/index.d.ts" />
+/// <reference path="globals/react-redux/index.d.ts" />
 /// <reference path="globals/react-router/index.d.ts" />
 /// <reference path="globals/react/index.d.ts" />
 /// <reference path="globals/redux-saga/index.d.ts" />

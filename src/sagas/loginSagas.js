@@ -1,7 +1,11 @@
 /* eslint-disable no-constant-condition */
 import { takeLatest, take, select, fork, put, call } from 'redux-saga/effects';
-import loginActions, {AUTH_DATA, GET_USER, EXPIRE_AUTH_DATA} from '../actions/loginActions';
-import {LOAD_USER, INCREMENT} from '../constants/actionTypes';
+import loginActions from '../actions/loginActions';
+import {LOAD_USER,
+  INCREMENT,
+  AUTH_DATA,
+  GET_USER,
+  EXPIRE_AUTH_DATA} from '../constants/actionTypes';
 import {selectors} from '../reducers/loginReducer';
 
 const watchFetchAuthData = function*() {
@@ -28,26 +32,23 @@ const watchExpireAuthData = function* () {
 };
 
 const handleGetUser = function*() {
-  while (true) {
+  //while (true) {
     console.debug("GET_USER handler started");
-    yield take(GET_USER);
-    console.debug("saga took GET_USER");
-    let user = yield fork(selectors.getUser);
-    if (!user) yield call(loginActions.requireAuthData);
-    yield;
-  }
-};
-
-//selectors mapping
-const getUser = function*() {
-  yield put(GET_USER);
+    let state = yield take(GET_USER);
+    console.debug("saga took GET_USER", state);
+    let user = yield select(selectors.getUser);
+    //if (!user) yield call(loginActions.requireAuthData);
+    console.debug("saga got user");
+    console.debug(user);
+    yield user;
+  //}
 };
 
 const loginSagas = {
   watchLoginButtonClicked,
   watchExpireAuthData,
   watchFetchAuthData,
-  handleGetUser
+  handleGetUser,
 };
 
 export default loginSagas;

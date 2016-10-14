@@ -11,9 +11,10 @@ class RouterWrapper extends React.Component {
         this.requireAuthData = this.requireAuthData.bind(this);
     }
 
-    requireAuthData(nextState, replace) {
+    requireAuthData(nextState, replace, next) {
         console.debug("wrapped in route requireAuthData");
-        this.props.requireAuthData(nextState, replace);
+        setTimeout(() => this.props.requireAuthData(nextState, replace, next), 1);
+        //this.props.requireAuthData(nextState, replace, next);
     }
 
     render() {

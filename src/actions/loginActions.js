@@ -25,7 +25,7 @@ function* expireAuthData(timeoutInSeconds = 500) {
   yield put({ type: EXPIRE_AUTH_DATA });
 }
 
-const getUser = (state) => actionCreator(GET_USER, state);
+const getUser = () => actionCreator(GET_USER);
 const getError = (state) => actionCreator(GET_ERROR, state);
 const isFetching = (state) => actionCreator(IS_FETCHING, state);
 //const loginButtonClicked = (state) => actionCreator(INCREMENT, state);

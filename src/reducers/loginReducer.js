@@ -7,6 +7,8 @@ import { combineReducers } from 'redux-immutable';
 
 //selectors
 const getUser = (state) => { 
+    console.debug("selector for the user from state");
+    console.debug(state);
     let isExpired = state.getIn(['otherLoginReducer','expired']);
     return isExpired ? undefined : state.getIn(['fetchLoginReducer','fetchedData']); };
 // const setUser = (state, newUser) => {

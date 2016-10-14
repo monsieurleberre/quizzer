@@ -32,16 +32,16 @@ const watchExpireAuthData = function* () {
 };
 
 const handleGetUser = function*() {
-  //while (true) {
+  while (true) {
     console.debug("GET_USER handler started");
-    let state = yield take(GET_USER);
-    console.debug("saga took GET_USER", state);
+    yield take(GET_USER);
+    console.debug("saga took GET_USER");
     let user = yield select(selectors.getUser);
     //if (!user) yield call(loginActions.requireAuthData);
     console.debug("saga got user");
     console.debug(user);
     yield user;
-  //}
+  }
 };
 
 const loginSagas = {

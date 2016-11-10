@@ -9,10 +9,13 @@ class RouterWrapper extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.requireAuthData = this.requireAuthData.bind(this);
+        this.requireAuthDataPending = false;
     }
 
     requireAuthData(nextState, replace, next) {
         console.debug("wrapped in route requireAuthData");
+        if(this.requireAuthDataPending) return;
+        this.requireAuthDataPending = true;
         setTimeout(() => this.props.requireAuthData(nextState, replace, next), 1);
         //this.props.requireAuthData(nextState, replace, next);
     }
@@ -25,14 +28,15 @@ class RouterWrapper extends React.Component {
 }
 
 RouterWrapper.propTypes = {
-    requireAuthData: PropTypes.func.isRequired
+    requireAuthData: PropTypes.func.isRequired,
+    requireAuthDataPending: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
-    console.debug("map stae to prop with state")
+    console.debug("map state to prop with state");
     console.debug(state);
     return {
-        rwprops: "some props"
+        requireAuthDataPending: routerActions.is
     };
 }
 

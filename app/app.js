@@ -51,20 +51,24 @@ const rootRoute = {
   childRoutes: createRoutes(store),
 };
 
+// import the ThemeWrapper for material-ui
+import ThemeWrapper from './themeWrapper';
 
 const render = (translatedMessages) => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={translatedMessages}>
-        <Router
-          history={history}
-          routes={rootRoute}
-          render={
-            // Scroll to top when going to a new page, imitating default browser
-            // behaviour
-            applyRouterMiddleware(useScroll())
-          }
-        />
+        <ThemeWrapper>
+          <Router
+            history={history}
+            routes={rootRoute}
+            render={
+              // Scroll to top when going to a new page, imitating default browser
+              // behaviour
+              applyRouterMiddleware(useScroll())
+            }
+          />
+        </ThemeWrapper>
       </LanguageProvider>
     </Provider>,
     document.getElementById('app')
@@ -88,6 +92,7 @@ if (!window.Intl) {
   }))
     .then(() => Promise.all([
       System.import('intl/locale-data/jsonp/de.js'),
+      System.import('intl/locale-data/jsonp/fr.js'),
     ]))
     .then(() => render(translationMessages))
     .catch((err) => {

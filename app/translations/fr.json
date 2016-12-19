@@ -1,0 +1,5 @@
+{
+  "app.components.HomePage.header": "Bienvenue sur Quizzer",
+  "app.components.NotFoundPage.header": "Merde, je ne trouve pas la page",
+  "app.components.Login.helloStranger": "Bonjour, etranger"
+}
